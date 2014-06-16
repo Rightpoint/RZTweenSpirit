@@ -1,566 +1,1228 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		9A8C48EE194F3FC200966A8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48ED194F3FC200966A8F /* Foundation.framework */; };
-		9A8C48F0194F3FC200966A8F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48EF194F3FC200966A8F /* CoreGraphics.framework */; };
-		9A8C48F2194F3FC200966A8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48F1194F3FC200966A8F /* UIKit.framework */; };
-		9A8C48F4194F3FC200966A8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48F3194F3FC200966A8F /* QuartzCore.framework */; };
-		9A8C48FB194F3FC200966A8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C48F9194F3FC200966A8F /* InfoPlist.strings */; };
-		9A8C48FD194F3FC200966A8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C48FC194F3FC200966A8F /* main.m */; };
-		9A8C4907194F3FC200966A8F /* RZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C4906194F3FC200966A8F /* RZAppDelegate.m */; };
-		9A8C4909194F3FC200966A8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C4908194F3FC200966A8F /* Images.xcassets */; };
-		9A8C4910194F3FC200966A8F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C490F194F3FC200966A8F /* XCTest.framework */; };
-		9A8C4911194F3FC200966A8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48ED194F3FC200966A8F /* Foundation.framework */; };
-		9A8C4912194F3FC200966A8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48F1194F3FC200966A8F /* UIKit.framework */; };
-		9A8C491A194F3FC300966A8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C4918194F3FC300966A8F /* InfoPlist.strings */; };
-		9A8C491C194F3FC300966A8F /* RZTweenSpiritDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C491B194F3FC300966A8F /* RZTweenSpiritDemoTests.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9A8C4913194F3FC200966A8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A8C48E2194F3FC200966A8F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A8C48E9194F3FC200966A8F;
-			remoteInfo = RZTweenSpiritDemo;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		9A8C48EA194F3FC200966A8F /* RZTweenSpiritDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RZTweenSpiritDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8C48ED194F3FC200966A8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9A8C48EF194F3FC200966A8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9A8C48F1194F3FC200966A8F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9A8C48F3194F3FC200966A8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9A8C48F8194F3FC200966A8F /* RZTweenSpiritDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RZTweenSpiritDemo-Info.plist"; sourceTree = "<group>"; };
-		9A8C48FA194F3FC200966A8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9A8C48FC194F3FC200966A8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9A8C48FE194F3FC200966A8F /* RZTweenSpiritDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RZTweenSpiritDemo-Prefix.pch"; sourceTree = "<group>"; };
-		9A8C4905194F3FC200966A8F /* RZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RZAppDelegate.h; sourceTree = "<group>"; };
-		9A8C4906194F3FC200966A8F /* RZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZAppDelegate.m; sourceTree = "<group>"; };
-		9A8C4908194F3FC200966A8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9A8C490E194F3FC200966A8F /* RZTweenSpiritDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RZTweenSpiritDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8C490F194F3FC200966A8F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9A8C4917194F3FC300966A8F /* RZTweenSpiritDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RZTweenSpiritDemoTests-Info.plist"; sourceTree = "<group>"; };
-		9A8C4919194F3FC300966A8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9A8C491B194F3FC300966A8F /* RZTweenSpiritDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZTweenSpiritDemoTests.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		9A8C48E7194F3FC200966A8F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8C48F4194F3FC200966A8F /* QuartzCore.framework in Frameworks */,
-				9A8C48F0194F3FC200966A8F /* CoreGraphics.framework in Frameworks */,
-				9A8C48F2194F3FC200966A8F /* UIKit.framework in Frameworks */,
-				9A8C48EE194F3FC200966A8F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A8C490B194F3FC200966A8F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8C4910194F3FC200966A8F /* XCTest.framework in Frameworks */,
-				9A8C4912194F3FC200966A8F /* UIKit.framework in Frameworks */,
-				9A8C4911194F3FC200966A8F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		9A8C48E1194F3FC200966A8F = {
-			isa = PBXGroup;
-			children = (
-				9A8C48F5194F3FC200966A8F /* RZTweenSpiritDemo */,
-				9A8C4915194F3FC200966A8F /* RZTweenSpiritDemoTests */,
-				9A8C48EC194F3FC200966A8F /* Frameworks */,
-				9A8C48EB194F3FC200966A8F /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		9A8C48EB194F3FC200966A8F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C48EA194F3FC200966A8F /* RZTweenSpiritDemo.app */,
-				9A8C490E194F3FC200966A8F /* RZTweenSpiritDemoTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A8C48EC194F3FC200966A8F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C48ED194F3FC200966A8F /* Foundation.framework */,
-				9A8C48EF194F3FC200966A8F /* CoreGraphics.framework */,
-				9A8C48F1194F3FC200966A8F /* UIKit.framework */,
-				9A8C48F3194F3FC200966A8F /* QuartzCore.framework */,
-				9A8C490F194F3FC200966A8F /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9A8C48F5194F3FC200966A8F /* RZTweenSpiritDemo */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C4904194F3FC200966A8F /* Application */,
-				9A8C4900194F3FC200966A8F /* View Controllers */,
-				9A8C48FF194F3FC200966A8F /* Views */,
-				9A8C48F7194F3FC200966A8F /* Supporting Files */,
-				9A8C48F6194F3FC200966A8F /* Resources */,
-			);
-			path = RZTweenSpiritDemo;
-			sourceTree = "<group>";
-		};
-		9A8C48F6194F3FC200966A8F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C4908194F3FC200966A8F /* Images.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		9A8C48F7194F3FC200966A8F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C48F8194F3FC200966A8F /* RZTweenSpiritDemo-Info.plist */,
-				9A8C48F9194F3FC200966A8F /* InfoPlist.strings */,
-				9A8C48FC194F3FC200966A8F /* main.m */,
-				9A8C48FE194F3FC200966A8F /* RZTweenSpiritDemo-Prefix.pch */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9A8C48FF194F3FC200966A8F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		9A8C4900194F3FC200966A8F /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		9A8C4904194F3FC200966A8F /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C4905194F3FC200966A8F /* RZAppDelegate.h */,
-				9A8C4906194F3FC200966A8F /* RZAppDelegate.m */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		9A8C4915194F3FC200966A8F /* RZTweenSpiritDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C491B194F3FC300966A8F /* RZTweenSpiritDemoTests.m */,
-				9A8C4916194F3FC300966A8F /* Supporting Files */,
-			);
-			path = RZTweenSpiritDemoTests;
-			sourceTree = "<group>";
-		};
-		9A8C4916194F3FC300966A8F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C4917194F3FC300966A8F /* RZTweenSpiritDemoTests-Info.plist */,
-				9A8C4918194F3FC300966A8F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		9A8C48E9194F3FC200966A8F /* RZTweenSpiritDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9A8C4920194F3FC300966A8F /* Build configuration list for PBXNativeTarget "RZTweenSpiritDemo" */;
-			buildPhases = (
-				9A8C48E6194F3FC200966A8F /* Sources */,
-				9A8C48E7194F3FC200966A8F /* Frameworks */,
-				9A8C48E8194F3FC200966A8F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = RZTweenSpiritDemo;
-			productName = RZTweenSpiritDemo;
-			productReference = 9A8C48EA194F3FC200966A8F /* RZTweenSpiritDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
-		9A8C490D194F3FC200966A8F /* RZTweenSpiritDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9A8C4924194F3FC300966A8F /* Build configuration list for PBXNativeTarget "RZTweenSpiritDemoTests" */;
-			buildPhases = (
-				9A8C490A194F3FC200966A8F /* Sources */,
-				9A8C490B194F3FC200966A8F /* Frameworks */,
-				9A8C490C194F3FC200966A8F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9A8C4914194F3FC200966A8F /* PBXTargetDependency */,
-			);
-			name = RZTweenSpiritDemoTests;
-			productName = RZTweenSpiritDemoTests;
-			productReference = 9A8C490E194F3FC200966A8F /* RZTweenSpiritDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		9A8C48E2194F3FC200966A8F /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				CLASSPREFIX = RZ;
-				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = Raizlabs;
-				TargetAttributes = {
-					9A8C490D194F3FC200966A8F = {
-						TestTargetID = 9A8C48E9194F3FC200966A8F;
-					};
-				};
-			};
-			buildConfigurationList = 9A8C48E5194F3FC200966A8F /* Build configuration list for PBXProject "RZTweenSpiritDemo" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 9A8C48E1194F3FC200966A8F;
-			productRefGroup = 9A8C48EB194F3FC200966A8F /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				9A8C48E9194F3FC200966A8F /* RZTweenSpiritDemo */,
-				9A8C490D194F3FC200966A8F /* RZTweenSpiritDemoTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		9A8C48E8194F3FC200966A8F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8C48FB194F3FC200966A8F /* InfoPlist.strings in Resources */,
-				9A8C4909194F3FC200966A8F /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A8C490C194F3FC200966A8F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8C491A194F3FC300966A8F /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		9A8C48E6194F3FC200966A8F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8C4907194F3FC200966A8F /* RZAppDelegate.m in Sources */,
-				9A8C48FD194F3FC200966A8F /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A8C490A194F3FC200966A8F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8C491C194F3FC300966A8F /* RZTweenSpiritDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9A8C4914194F3FC200966A8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9A8C48E9194F3FC200966A8F /* RZTweenSpiritDemo */;
-			targetProxy = 9A8C4913194F3FC200966A8F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9A8C48F9194F3FC200966A8F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9A8C48FA194F3FC200966A8F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9A8C4918194F3FC300966A8F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9A8C4919194F3FC300966A8F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		9A8C491D194F3FC300966A8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		9A8C491E194F3FC300966A8F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		9A8C491F194F3FC300966A8F /* Enterprise-QA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"ENTERPRISE=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				SDKROOT = iphoneos;
-			};
-			name = "Enterprise-QA";
-		};
-		9A8C4921194F3FC300966A8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Prefix.pch";
-				INFOPLIST_FILE = "RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		9A8C4922194F3FC300966A8F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Prefix.pch";
-				INFOPLIST_FILE = "RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		9A8C4923194F3FC300966A8F /* Enterprise-QA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Prefix.pch";
-				INFOPLIST_FILE = "RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Enterprise-QA";
-		};
-		9A8C4925194F3FC300966A8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RZTweenSpiritDemo.app/RZTweenSpiritDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		9A8C4926194F3FC300966A8F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RZTweenSpiritDemo.app/RZTweenSpiritDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		9A8C4927194F3FC300966A8F /* Enterprise-QA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RZTweenSpiritDemo.app/RZTweenSpiritDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = "Enterprise-QA";
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		9A8C48E5194F3FC200966A8F /* Build configuration list for PBXProject "RZTweenSpiritDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9A8C491D194F3FC300966A8F /* Debug */,
-				9A8C491E194F3FC300966A8F /* Release */,
-				9A8C491F194F3FC300966A8F /* Enterprise-QA */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9A8C4920194F3FC300966A8F /* Build configuration list for PBXNativeTarget "RZTweenSpiritDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9A8C4921194F3FC300966A8F /* Debug */,
-				9A8C4922194F3FC300966A8F /* Release */,
-				9A8C4923194F3FC300966A8F /* Enterprise-QA */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		9A8C4924194F3FC300966A8F /* Build configuration list for PBXNativeTarget "RZTweenSpiritDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9A8C4925194F3FC300966A8F /* Debug */,
-				9A8C4926194F3FC300966A8F /* Release */,
-				9A8C4927194F3FC300966A8F /* Enterprise-QA */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 9A8C48E2194F3FC200966A8F /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>6BF21E270915461A9538FCCA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6DEED6F6E5AA4963A932890B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6DEED6F6E5AA4963A932890B</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>76BC870B861342A4A5C92F8D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>91142B8D9BB14A78BE7F47BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Pods-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C48E1194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C48F5194F3FC200966A8F</string>
+				<string>9A8C4915194F3FC200966A8F</string>
+				<string>9A8C48EC194F3FC200966A8F</string>
+				<string>9A8C48EB194F3FC200966A8F</string>
+				<string>E2BC69D71888443193BFC57D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48E2194F3FC200966A8F</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>CLASSPREFIX</key>
+				<string>RZ</string>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Raizlabs</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>9A8C490D194F3FC200966A8F</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>9A8C48E9194F3FC200966A8F</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>9A8C48E5194F3FC200966A8F</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>9A8C48E1194F3FC200966A8F</string>
+			<key>productRefGroup</key>
+			<string>9A8C48EB194F3FC200966A8F</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>9A8C48E9194F3FC200966A8F</string>
+				<string>9A8C490D194F3FC200966A8F</string>
+			</array>
+		</dict>
+		<key>9A8C48E5194F3FC200966A8F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>9A8C491D194F3FC300966A8F</string>
+				<string>9A8C491E194F3FC300966A8F</string>
+				<string>9A8C491F194F3FC300966A8F</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>9A8C48E6194F3FC200966A8F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9A8C4907194F3FC200966A8F</string>
+				<string>9A8C48FD194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C48E7194F3FC200966A8F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9A8C48F4194F3FC200966A8F</string>
+				<string>9A8C48F0194F3FC200966A8F</string>
+				<string>9A8C48F2194F3FC200966A8F</string>
+				<string>9A8C48EE194F3FC200966A8F</string>
+				<string>6BF21E270915461A9538FCCA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C48E8194F3FC200966A8F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9A8C48FB194F3FC200966A8F</string>
+				<string>9A8C4909194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C48E9194F3FC200966A8F</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>9A8C4920194F3FC300966A8F</string>
+			<key>buildPhases</key>
+			<array>
+				<string>76BC870B861342A4A5C92F8D</string>
+				<string>9A8C48E6194F3FC200966A8F</string>
+				<string>9A8C48E7194F3FC200966A8F</string>
+				<string>9A8C48E8194F3FC200966A8F</string>
+				<string>91142B8D9BB14A78BE7F47BB</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>RZTweenSpiritDemo</string>
+			<key>productName</key>
+			<string>RZTweenSpiritDemo</string>
+			<key>productReference</key>
+			<string>9A8C48EA194F3FC200966A8F</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>9A8C48EA194F3FC200966A8F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemo.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>9A8C48EB194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C48EA194F3FC200966A8F</string>
+				<string>9A8C490E194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48EC194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C48ED194F3FC200966A8F</string>
+				<string>9A8C48EF194F3FC200966A8F</string>
+				<string>9A8C48F1194F3FC200966A8F</string>
+				<string>9A8C48F3194F3FC200966A8F</string>
+				<string>9A8C490F194F3FC200966A8F</string>
+				<string>6DEED6F6E5AA4963A932890B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48ED194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>9A8C48EE194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48ED194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C48EF194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>9A8C48F0194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48EF194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C48F1194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>9A8C48F2194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48F1194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C48F3194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>QuartzCore.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/QuartzCore.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>9A8C48F4194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48F3194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C48F5194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C4904194F3FC200966A8F</string>
+				<string>9A8C4900194F3FC200966A8F</string>
+				<string>9A8C48FF194F3FC200966A8F</string>
+				<string>9A8C48F7194F3FC200966A8F</string>
+				<string>9A8C48F6194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemo</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48F6194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C4908194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Resources</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48F7194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C48F8194F3FC200966A8F</string>
+				<string>9A8C48F9194F3FC200966A8F</string>
+				<string>9A8C48FC194F3FC200966A8F</string>
+				<string>9A8C48FE194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48F8194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemo-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48F9194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C48FA194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48FA194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48FB194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48F9194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C48FC194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48FD194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48FC194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C48FE194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemo-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C48FF194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Views</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4900194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>View Controllers</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4904194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C4905194F3FC200966A8F</string>
+				<string>9A8C4906194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Application</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4905194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>RZAppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4906194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>RZAppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4907194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C4906194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C4908194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4909194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C4908194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C490A194F3FC200966A8F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9A8C491C194F3FC300966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C490B194F3FC200966A8F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9A8C4910194F3FC200966A8F</string>
+				<string>9A8C4912194F3FC200966A8F</string>
+				<string>9A8C4911194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C490C194F3FC200966A8F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9A8C491A194F3FC300966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A8C490D194F3FC200966A8F</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>9A8C4924194F3FC300966A8F</string>
+			<key>buildPhases</key>
+			<array>
+				<string>9A8C490A194F3FC200966A8F</string>
+				<string>9A8C490B194F3FC200966A8F</string>
+				<string>9A8C490C194F3FC200966A8F</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>9A8C4914194F3FC200966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>RZTweenSpiritTests</string>
+			<key>productName</key>
+			<string>RZTweenSpiritDemoTests</string>
+			<key>productReference</key>
+			<string>9A8C490E194F3FC200966A8F</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>9A8C490E194F3FC200966A8F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemoTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>9A8C490F194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>9A8C4910194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C490F194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C4911194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48ED194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C4912194F3FC200966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C48F1194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C4913194F3FC200966A8F</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>9A8C48E2194F3FC200966A8F</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>9A8C48E9194F3FC200966A8F</string>
+			<key>remoteInfo</key>
+			<string>RZTweenSpiritDemo</string>
+		</dict>
+		<key>9A8C4914194F3FC200966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>9A8C48E9194F3FC200966A8F</string>
+			<key>targetProxy</key>
+			<string>9A8C4913194F3FC200966A8F</string>
+		</dict>
+		<key>9A8C4915194F3FC200966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C491B194F3FC300966A8F</string>
+				<string>9A8C4916194F3FC300966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemoTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4916194F3FC300966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C4917194F3FC300966A8F</string>
+				<string>9A8C4918194F3FC300966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4917194F3FC300966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemoTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4918194F3FC300966A8F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A8C4919194F3FC300966A8F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C4919194F3FC300966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C491A194F3FC300966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C4918194F3FC300966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C491B194F3FC300966A8F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>RZTweenSpiritDemoTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9A8C491C194F3FC300966A8F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A8C491B194F3FC300966A8F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9A8C491D194F3FC300966A8F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>9A8C491E194F3FC300966A8F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>9A8C491F194F3FC300966A8F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>ENTERPRISE=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Enterprise-QA</string>
+		</dict>
+		<key>9A8C4920194F3FC300966A8F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>9A8C4921194F3FC300966A8F</string>
+				<string>9A8C4922194F3FC300966A8F</string>
+				<string>9A8C4923194F3FC300966A8F</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>9A8C4921194F3FC300966A8F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E2BC69D71888443193BFC57D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>9A8C4922194F3FC300966A8F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E2BC69D71888443193BFC57D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>9A8C4923194F3FC300966A8F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E2BC69D71888443193BFC57D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>RZTweenSpiritDemo/Supporting Files/RZTweenSpiritDemo-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Enterprise-QA</string>
+		</dict>
+		<key>9A8C4924194F3FC300966A8F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>9A8C4925194F3FC300966A8F</string>
+				<string>9A8C4926194F3FC300966A8F</string>
+				<string>9A8C4927194F3FC300966A8F</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>9A8C4925194F3FC300966A8F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/RZTweenSpiritDemo.app/RZTweenSpiritDemo</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>INFOPLIST_FILE</key>
+				<string>RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>9A8C4926194F3FC300966A8F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/RZTweenSpiritDemo.app/RZTweenSpiritDemo</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>INFOPLIST_FILE</key>
+				<string>RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>9A8C4927194F3FC300966A8F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/RZTweenSpiritDemo.app/RZTweenSpiritDemo</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>INFOPLIST_FILE</key>
+				<string>RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Enterprise-QA</string>
+		</dict>
+		<key>E2BC69D71888443193BFC57D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Pods.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>9A8C48E2194F3FC200966A8F</string>
+</dict>
+</plist>

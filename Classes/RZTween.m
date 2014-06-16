@@ -29,8 +29,6 @@
 
 #import "RZTween.h"
 
-
-
 static float RZTweenClampFloat(float value, float min, float max)
 {
     return MIN(max, MAX(value, min));
@@ -104,7 +102,6 @@ static float RZTweenMapFloat(float value, float inMin, float inMax, float outMin
             result = RZTweenSineEaseInOut(normalizedValue);
             break;
         default:
-            RZLogDebug(@"Invalid tween curve type :%d",curve);
             result = normalizedValue;
             break;
     }
