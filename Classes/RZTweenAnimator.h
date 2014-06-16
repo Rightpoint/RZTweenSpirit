@@ -35,8 +35,10 @@ typedef void (^RZTweenAnimatorUpdateBlock)(NSValue *value);
 
 @protocol RZTweenAnimatorDelegate;
 
+/**
+ *  An animation controller for managing tweening timelines.
+ */
 @interface RZTweenAnimator : NSObject
-
 
 /**
 *  Adds a tween for a paticular keyPath on an object.  If the data type for the tween doesn not match the exptected
@@ -86,6 +88,9 @@ typedef void (^RZTweenAnimatorUpdateBlock)(NSValue *value);
 
 // ------------------------------------------------------------
 
+/**
+ *  Delegate protocol for observing animator state.
+ */
 @protocol RZTweenAnimatorDelegate <NSObject>
 
 @optional

@@ -32,19 +32,9 @@
 @interface RZTweenAnimator ()
 
 @property (nonatomic, strong) NSMutableDictionary *tweensToBlocks;
-
-- (void)animateToTime:(NSTimeInterval)time usingScale:(double)timeScale;
-
-// CADisplayLink
 @property (nonatomic, strong) CADisplayLink *frameTimer;
 @property (nonatomic, assign) NSTimeInterval targetTime;
 @property (nonatomic, assign) double timeScale;
-
-- (void)startFrameTimer;
-- (void)cancelFrameTimer;
-- (void)frameTick:(CADisplayLink *)frameTimer;
-
-- (void)setValuesForCurrentTime;
 
 @end
 

@@ -29,22 +29,15 @@
 
 @import Foundation;
 
-/*!
- *  A subclass of RZTween provides a way to interpolate a value of an arbitrary numerical type
- *  between several keyframes. Currently only linear interpolation is supported.
- *  A tween can be used as-is or with RZTweenAnimator.
- */
-
-
 /**
  *  Different animation curves that are supported by the tween.
  */
-typedef NS_ENUM(u_int8_t, RZTweenCurveType)
+typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 {
     /**
      *  y = x
      */
-    RZTweenCurveTypeLinear,
+    RZTweenCurveTypeLinear = 0,
     /**
      *  y = x^2
      */
@@ -71,6 +64,10 @@ typedef NS_ENUM(u_int8_t, RZTweenCurveType)
     RZTweenCurveTypeSineEaseInOut
 };
 
+/**
+ *  A subclass of RZTween provides a way to interpolate a value of an arbitrary numerical type.
+ *  A tween can be used as-is or with RZTweenAnimator.
+ */
 @interface RZTween : NSObject <NSCopying>
 
 /**
@@ -78,7 +75,6 @@ typedef NS_ENUM(u_int8_t, RZTweenCurveType)
  */
 @property (nonatomic, assign) RZTweenCurveType curveType;
 
-// TODO: remove the requirement for NSValue to support objects (UIColor)
 /**
  *  Returns @0 by default.  Should subclass to return appropriate type wrapped in NSValue
  *
@@ -92,6 +88,9 @@ typedef NS_ENUM(u_int8_t, RZTweenCurveType)
 
 @end
 
+/**
+ * Tween for float values
+ */
 @interface RZFloatTween : RZTween
 
 - (void)addKeyFloat:(CGFloat)keyFloat atTime:(NSTimeInterval)time;
@@ -99,7 +98,8 @@ typedef NS_ENUM(u_int8_t, RZTweenCurveType)
 @end
 
 /**
- *  Obviously can't tween between bool values,
+ *  Tween for boolean values.
+ *  Obviously can't interpolate between bool values,
  *  so this simply returns the most recent boolean keyframe value.
  */
 @interface RZBooleanTween : RZTween
@@ -108,19 +108,29 @@ typedef NS_ENUM(u_int8_t, RZTweenCurveType)
 
 @end
 
-// TODO:  may need to look into a bug with rotation transforms.
+/**
+ * Tween for CGAffineTransform values.
+ * @warning Performs direct linear interpolation between matrices. Rotation transforms
+ *          will NOT work correctly.
+ */
 @interface RZTransformTween : RZTween
 
 - (void)addKeyTransform:(CGAffineTransform)transform atTime:(NSTimeInterval)time;
 
 @end
 
+/**
+ * Tween for CGRect values.
+ */
 @interface RZRectTween : RZTween
 
 - (void)addKeyRect:(CGRect)rect atTime:(NSTimeInterval)time;
 
 @end
 
+/**
+ * Tween for CGPoint values.
+ */
 @interface RZPointTween : RZTween
 
 - (void)addKeyPoint:(CGPoint)point atTime:(NSTimeInterval)time;
