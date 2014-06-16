@@ -21,6 +21,8 @@
 		9A8C4912194F3FC200966A8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48F1194F3FC200966A8F /* UIKit.framework */; };
 		9A8C491A194F3FC300966A8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C4918194F3FC300966A8F /* InfoPlist.strings */; };
 		9A8C491C194F3FC300966A8F /* RZTweenSpiritTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C491B194F3FC300966A8F /* RZTweenSpiritTests.m */; };
+		9A8C492C194F49A800966A8F /* RZDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C492B194F49A800966A8F /* RZDemoViewController.m */; };
+		9A8C4930194F49DA00966A8F /* RZTweeningDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C492F194F49DA00966A8F /* RZTweeningDemoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		9A8C4919194F3FC300966A8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9A8C491B194F3FC300966A8F /* RZTweenSpiritTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZTweenSpiritTests.m; sourceTree = "<group>"; };
 		9A8C4928194F43FF00966A8F /* RZTweenSpiritTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RZTweenSpiritTests-Prefix.pch"; sourceTree = "<group>"; };
+		9A8C492A194F49A800966A8F /* RZDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZDemoViewController.h; sourceTree = "<group>"; };
+		9A8C492B194F49A800966A8F /* RZDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZDemoViewController.m; sourceTree = "<group>"; };
+		9A8C492E194F49DA00966A8F /* RZTweeningDemoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZTweeningDemoView.h; sourceTree = "<group>"; };
+		9A8C492F194F49DA00966A8F /* RZTweeningDemoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZTweeningDemoView.m; sourceTree = "<group>"; };
 		E2BC69D71888443193BFC57D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +126,7 @@
 			children = (
 				9A8C4904194F3FC200966A8F /* Application */,
 				9A8C4900194F3FC200966A8F /* View Controllers */,
-				9A8C48FF194F3FC200966A8F /* Views */,
+				9A8C492D194F49C000966A8F /* Views */,
 				9A8C48F7194F3FC200966A8F /* Supporting Files */,
 				9A8C48F6194F3FC200966A8F /* Resources */,
 			);
@@ -146,16 +152,11 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9A8C48FF194F3FC200966A8F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		9A8C4900194F3FC200966A8F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A8C492A194F49A800966A8F /* RZDemoViewController.h */,
+				9A8C492B194F49A800966A8F /* RZDemoViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -186,6 +187,15 @@
 				9A8C4918194F3FC300966A8F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A8C492D194F49C000966A8F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A8C492E194F49DA00966A8F /* RZTweeningDemoView.h */,
+				9A8C492F194F49DA00966A8F /* RZTweeningDemoView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,7 +329,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8C4930194F49DA00966A8F /* RZTweeningDemoView.m in Sources */,
 				9A8C4907194F3FC200966A8F /* RZAppDelegate.m in Sources */,
+				9A8C492C194F49A800966A8F /* RZDemoViewController.m in Sources */,
 				9A8C48FD194F3FC200966A8F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
