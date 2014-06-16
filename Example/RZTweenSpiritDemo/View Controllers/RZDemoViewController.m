@@ -17,7 +17,9 @@
 
 - (void)loadView
 {
-    self.view = [[RZTweeningDemoView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    RZTweeningDemoView *tdView = [[RZTweeningDemoView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view = tdView;
 }
+
 
 @end

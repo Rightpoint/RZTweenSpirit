@@ -107,6 +107,9 @@ static CGFloat const kRZTweeningDemoViewScrollHeight = 2000.f;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    /*
+     * When the scrollview scrolls, set the tween animator's time. This will update all tweens.
+     */
     CGFloat totalScrollLength = scrollView.contentSize.height - CGRectGetHeight(scrollView.frame);
     CGFloat normalizedTime    = scrollView.contentOffset.y / totalScrollLength;
     [self.tweenAnimator setTime:normalizedTime];
