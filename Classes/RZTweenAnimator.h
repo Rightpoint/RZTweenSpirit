@@ -1,6 +1,6 @@
 //
 //  RZTweenAnimator.h
-//  Raizlabs
+//  RZTweenSpirit
 //
 //  Created by Nick D on 1/3/14.
 
@@ -44,19 +44,19 @@ typedef void (^RZTweenAnimatorUpdateBlock)(NSValue *value);
 *  Adds a tween for a paticular keyPath on an object.  If the data type for the tween doesn not match the exptected
 *  type for the keyPath, an exception will likely be raised.
 *
-*  @param tween   An object of RZTween type to be modified when the time is changed.
+*  @param tween   An object which implemens RZTween to be used to calculate a new value when the time is changed.
 *  @param keyPath The keypath that will be called using KVC
 *  @param object  The object that will be modified by the animator.
 */
-- (void)addTween:(RZTween *)tween forKeyPath:(NSString *)keyPath ofObject:(id)object;
+- (void)addTween:(id<RZTween>)tween forKeyPath:(NSString *)keyPath ofObject:(id)object;
 
 /**
  *  Add a tween with a frame update block.  Block is called for each update with the current tweened value.
  *
- *  @param tween      An object of RZTween type controlling the tween values.
+ *  @param tween      An object which implemens RZTween to be used to calculate a new value when the time is changed.
  *  @param frameBlock Block to be called when the animator updates its time.
  */
-- (void)addTween:(RZTween *)tween withUpdateBlock:(RZTweenAnimatorUpdateBlock)frameBlock;
+- (void)addTween:(id<RZTween>)tween withUpdateBlock:(RZTweenAnimatorUpdateBlock)frameBlock;
 
 /**
  *  Represents the current position of the animation timeline.

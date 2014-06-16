@@ -1,6 +1,6 @@
 //
 //  RZTweenAnimator.m
-//  Raizlabs
+//  RZTweenSpirit
 //
 //  Created by Nick D on 1/3/14.
 
@@ -52,7 +52,7 @@
 
 #pragma mark - Adding tweens
 
-- (void)addTween:(RZTween *)tween forKeyPath:(NSString *)keyPath ofObject:(id)object
+- (void)addTween:(id<RZTween>)tween forKeyPath:(NSString *)keyPath ofObject:(id)object
 {
     __weak __typeof(object) weakObj = object;
     [self addTween:tween withUpdateBlock:^(NSValue *value) {
@@ -60,7 +60,7 @@
     }];
 }
 
-- (void)addTween:(RZTween *)tween withUpdateBlock:(RZTweenAnimatorUpdateBlock)frameBlock
+- (void)addTween:(id<RZTween>)tween withUpdateBlock:(RZTweenAnimatorUpdateBlock)frameBlock
 {
     NSParameterAssert(tween);
     NSParameterAssert(frameBlock);
@@ -121,7 +121,7 @@
 
 - (void)setValuesForCurrentTime
 {
-    [self.tweensToBlocks enumerateKeysAndObjectsUsingBlock:^(RZTween * tween, RZTweenAnimatorUpdateBlock frameBlock, BOOL *stop) {
+    [self.tweensToBlocks enumerateKeysAndObjectsUsingBlock:^(id<RZTween> tween, RZTweenAnimatorUpdateBlock frameBlock, BOOL *stop) {
         NSValue *value = [tween valueAtTime:self.time];
         if (value != nil)
         {

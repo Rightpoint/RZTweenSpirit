@@ -1,12 +1,12 @@
 //
-//  RZTween.h
+//  RZTweenSpirit.h
 //  RZTweenSpirit
 //
-//  Created by Nick D on 1/3/14.
+//  Created by Nick D on 6/15/14
 
 // Copyright 2014 Raizlabs and other contributors
 // http://raizlabs.com/
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
 // "Software"), to deal in the Software without restriction, including
@@ -14,10 +14,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -27,32 +27,5 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@import Foundation;
-
-/**
- *  An object implementing RZTween provides a way to interpolate a value of an 
- *  arbitrary numerical type (or anything that can be boxed by NSValue).
- *  A tween can be used as-is or with RZTweenAnimator.
- */
-
-@protocol RZTween <NSObject, NSCopying>
-
-/**
- *  Return the value of the tween at a particular point along a timeline.
- *
- *  @param The time along the timeline at which to get the value.
- *
- *  @return Value for the provided time.
- */
-- (NSValue *)valueAtTime:(NSTimeInterval)time;
-
-/**
- *  Return whether another tween is equal to this one.
- *
- *  @param tween Some other tween.
- *
- *  @return Whether the tweens are equal.
- */
-- (BOOL)isEqualToTween:(id<RZTween>)tween;
-
-@end
+#import "RZTweenAnimator.h"
+#import "RZTweenSubtypes.h"
