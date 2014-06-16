@@ -182,7 +182,6 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     [self.tweenAnimator addTween:bulgeLabelTween withUpdateBlock:^(NSValue *value) {
         CATransform3D layerTransform = CATransform3DMakeAffineTransform([value CGAffineTransformValue]);
         weakSelf.bulgingLabel.layer.transform = layerTransform;
-        [weakSelf setNeedsLayout];
     }];
     
 }
