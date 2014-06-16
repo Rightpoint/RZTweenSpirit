@@ -122,7 +122,7 @@
 - (void)setValuesForCurrentTime
 {
     [self.tweensToBlocks enumerateKeysAndObjectsUsingBlock:^(id<RZTween> tween, RZTweenAnimatorUpdateBlock frameBlock, BOOL *stop) {
-        NSValue *value = [tween valueAtTime:self.time];
+        NSValue *value = [tween tweenedValueAtTime:self.time];
         if (value != nil)
         {
             frameBlock(value);

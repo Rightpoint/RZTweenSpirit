@@ -72,13 +72,15 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
     RZTweenCurveTypeSineEaseInOut
 };
 
+// ----------------------
+
 /**
- *  Provides a baseline implementation of RZTween for other concrete subtypes.
+ *  Provides a keyframe-based abstract base implementation of RZTween for particular value types.
  *  This tween provides facilities for keyframe-based tweening, with particular values
  *  anchored to particular times and easing between these keyframes.
  *
- *  @note This class should not be used directly as it will always return 0 for its value.
- *        Use one of the subclasses instead.
+ *  @warning Do not use this class directly. Rather, subclass it or use one of the concrete subclasses.
+ *           Attempting to call @p -tweenValueAtTime on this class will throw a runtime exception.
  */
 @interface RZKeyFrameTween : NSObject <RZTween>
 
@@ -92,23 +94,50 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  *  Initialize with a particular curve type.
  *  The default initializer will use RZTweenCurveTypeLinear.
  *
- *  @param curveType The curve type to use in this tween.
+ *  @param curveType The curve type to use with this tween.
  *
  *  @return A new instance of the tween.
  */
 - (instancetype)initWithCurveType:(RZTweenCurveType)curveType;
 
+/**
+ *  Add a keyframe with a particular value at a particular time.
+ *
+ *  @param value Value for the keyframe.
+ *  @param time  Time for the keyframe.
+ *
+ *  @warning The values passed in must represent a consistent underlying ObjC type.
+ *           Subclasses should ideally implement a scalar-typed version of this method which boxes
+ *           a value and calls this implementation.
+ */
+- (void)addKeyValue:(NSValue *)value atTime:(NSTimeInterval)time;
 
-- (void)addKeyFrameWithValue:(NSValue *)value atTime:(NSTimeInterval)time;
-
-
-- (NSArray *)nearestKeyFramesForTime:(NSTimeInterval)time;
+/**
+ *  Returns a linearly interpolated value between two keyframe times.
+ *  The delta will be calculated based on the time difference and curve type.
+ *
+ *  @param fromValue The value from which to interpolate.
+ *  @param fromTime  The time from which to interpolate.
+ *  @param toValue   The value to which to interpolate.
+ *  @param toTime    The time to which to interpolate.
+ *  @param delta     The linear delta between the two values to use for interpolation. (Between 0-1).
+ *
+ *  @note This is intended to be overridden in subclasses; do not call this method directly.
+ *
+ *  @return The interpolated value.
+ */
+- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue
+                                    atTime:(NSTimeInterval)fromTime
+                                toKeyValue:(NSValue *)toValue
+                                    atTime:(NSTimeInterval)toTime
+                                 withDelta:(float)delta;
 
 @end
 
+// ----------------------
 
 /**
- * Tween for float values.
+ * Tween for scalar floating-point (CGFloat) values.
  */
 @interface RZFloatTween : RZKeyFrameTween
 
@@ -122,9 +151,12 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 
 @end
 
+// ----------------------
+
 /**
  *  Tween for boolean values.
- *  Obviously can't interpolate between bool values,
+ *
+ *  Obviously it's not logical to interpolate between bool values,
  *  so this simply returns the most recent boolean keyframe value.
  */
 @interface RZBooleanTween : RZKeyFrameTween
@@ -133,16 +165,21 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 
 @end
 
+// ----------------------
+
 /**
  * Tween for CGAffineTransform values.
- * @warning Performs direct linear interpolation between matrices. Rotation transforms
- *          will NOT work correctly.
+ *
+ * @warning Performs direct linear interpolation between matrices. Rotation
+ *          and certain other transforms may not always work correctly.
  */
 @interface RZTransformTween : RZKeyFrameTween
 
 - (void)addKeyTransform:(CGAffineTransform)transform atTime:(NSTimeInterval)time;
 
 @end
+
+// ----------------------
 
 /**
  * Tween for CGRect values.
@@ -152,6 +189,8 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 - (void)addKeyRect:(CGRect)rect atTime:(NSTimeInterval)time;
 
 @end
+
+// ----------------------
 
 /**
  * Tween for CGPoint values.

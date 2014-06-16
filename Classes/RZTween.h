@@ -30,9 +30,11 @@
 @import Foundation;
 
 /**
- *  An object implementing RZTween provides a way to interpolate a value of an 
- *  arbitrary numerical type (or anything that can be boxed by NSValue).
- *  A tween can be used as-is or with RZTweenAnimator.
+ *  An object implementing RZTween provides a mechanism by which to retrieve
+ *  a value of an arbitrary numerical type (or anything that can be boxed by NSValue)
+ *  at a particular time. A tween can be used as-is or with RZTweenAnimator.
+ *
+ *  @see RZTweenSubtypes.h for several concrete implementations.
  */
 
 @protocol RZTween <NSObject, NSCopying>
@@ -44,7 +46,7 @@
  *
  *  @return Value for the provided time.
  */
-- (NSValue *)valueAtTime:(NSTimeInterval)time;
+- (NSValue *)tweenedValueAtTime:(NSTimeInterval)time;
 
 /**
  *  Return whether another tween is equal to this one.
