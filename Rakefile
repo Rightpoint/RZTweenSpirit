@@ -1,7 +1,7 @@
 
 PROJ_PATH="Example/RZTweenSpiritDemo.xcodeproj"
 WORKSPACE_PATH="Example/RZTweenSpiritDemo.xcworkspace"
-TEST_SCHEME="RZTweenSpiritTests"
+TEST_SCHEME="RZTweenSpiritDemo"
 
 #
 # Install
