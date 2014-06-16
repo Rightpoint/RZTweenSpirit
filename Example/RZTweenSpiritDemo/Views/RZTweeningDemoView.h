@@ -9,6 +9,8 @@
 
 @interface RZTweeningDemoView : UIView
 
+@property (nonatomic, readonly, weak) UIButton *startButton;
+
 @property (nonatomic, readonly, strong) RZTweenAnimator *tweenAnimator;
 
 @end

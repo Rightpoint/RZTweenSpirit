@@ -8,11 +8,13 @@
 
 #import "RZTweeningDemoView.h"
 
-static CGFloat const kRZTweeningDemoViewScrollHeight        = 2000.f;
+static CGFloat const kRZTweeningDemoViewScrollHeight        = 1600.0;
 static CGFloat const kRZTweeningDemoViewCloud1StartXOffset  = -40.0;
 static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
 
 @interface RZTweeningDemoView () <UIScrollViewDelegate>
+
+@property (nonatomic, readwrite, weak) UIButton *startButton;
 
 @property (nonatomic, readwrite, strong) RZTweenAnimator *tweenAnimator;
 
@@ -42,6 +44,17 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
         scrollView.delegate = self;
         [self addSubview:scrollView];
         _scrollView = scrollView;
+        
+        UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+        startButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        startButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+        startButton.adjustsImageWhenDisabled = NO;
+        [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [startButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+        [startButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [startButton setTitle:@"Start!" forState:UIControlStateNormal];
+        [self addSubview:startButton];
+        _startButton = startButton;
         
         UIImageView *cloud1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud1"]];
         UIImageView *cloud2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud2"]];
@@ -145,11 +158,33 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
      *  Tween the background color!
      */
     RZColorTween *colorTween = [[RZColorTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
+    CGFloat denominator = (CGFloat)[[self backgroundColors] count] - 1.0;
     [[self backgroundColors] enumerateObjectsUsingBlock:^(UIColor *bgColor, NSUInteger idx, BOOL *stop) {
-        [colorTween addKeyColor:bgColor atTime:(double)idx/[[self backgroundColors] count]];
+        [colorTween addKeyColor:bgColor atTime:(double)idx/denominator];
     }];
     [self.tweenAnimator addTween:colorTween forKeyPath:@"backgroundColor" ofObject:self];
     
+    /*
+     *  Tween the start button!
+     *  You can tween view properties directly, but this is restrictive - recommend using
+     *  autolayout (examples below) for dynamic, responsive view layouts.
+     */
+    RZPointTween *buttonCenterTween = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseOut];
+    [buttonCenterTween addKeyPoint:CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds) * 0.5 + 20.0) atTime:0];
+    [buttonCenterTween addKeyPoint:CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds) * 0.5) atTime:1];
+    [self.tweenAnimator addTween:buttonCenterTween forKeyPath:@"center" ofObject:self.startButton];
+    
+    RZFloatTween *buttonAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseIn];
+    [buttonAlphaTween addKeyFloat:0.0 atTime:0];
+    [buttonAlphaTween addKeyFloat:1.0 atTime:1];
+    [self.tweenAnimator addTween:buttonAlphaTween forKeyPath:@"alpha" ofObject:self.startButton];
+    
+    // Don't enable until we are all the way scrolled down
+    RZBooleanTween *buttonEnabledTween = [[RZBooleanTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
+    [buttonEnabledTween addKeyBool:NO atTime:0];
+    [buttonEnabledTween addKeyBool:YES atTime:0.9];
+    [self.tweenAnimator addTween:buttonEnabledTween forKeyPath:@"enabled" ofObject:self.startButton];
+
     /*
      *  The clouds have constraints, but we can animate those directly using KVC!
      */
@@ -172,9 +207,9 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     [self.tweenAnimator addTween:cloud2ParallaxTween forKeyPath:@"constant" ofObject:self.cloud2CenterX];
 
     /*
-     * The banner label has constraints, but its transform can still be animated.
+     *  The banner label also has constraints, but its transform can still be animated!
      */
-    NSInteger const nBulges     = 4;
+    NSInteger const nBulges     = 3;
     CGFloat   const bulgeScale  = 1.5;
     
     RZTransformTween *bulgeLabelTween = [[RZTransformTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseInOut];
@@ -199,6 +234,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
         weakSelf.bulgingLabel.layer.transform = layerTransform;
     }];
     
+    [self.tweenAnimator setTime:0];
 }
 
 - (NSArray *)backgroundColors
@@ -207,7 +243,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         s_bgColors = @[ [UIColor colorWithRed:0.5059 green:0.5098 blue:0.5255 alpha:1.0000],
-                        [UIColor colorWithRed:0.7255 green:0.7020 blue:0.6471 alpha:1.0000],
+                        [UIColor colorWithRed:0.8863 green:0.5137 blue:0.3255 alpha:1.0000],
                         [UIColor colorWithRed:0.9098 green:0.7098 blue:0.4863 alpha:1.0000],
                         [UIColor colorWithRed:0.3176 green:0.5725 blue:0.8431 alpha:1.0000] ];
     });
