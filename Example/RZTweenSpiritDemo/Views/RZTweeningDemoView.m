@@ -83,6 +83,21 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
                                                          attribute:NSLayoutAttributeBottom
                                                         multiplier:1.0
                                                           constant:-40.0]];
+        
+        // To pin to the center and still allow flexible scaling, we need a container to host the label.
+        UIView *labelContainer = [[UIView alloc] init];
+        labelContainer.userInteractionEnabled = NO;
+        labelContainer.backgroundColor = [UIColor clearColor];
+        labelContainer.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:labelContainer];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[container]-0-|"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:@{ @"container" : labelContainer }]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container(==100)]"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:@{ @"container" : labelContainer }]];
 
         UILabel *bulgingLabel = [[UILabel alloc] init];
         bulgingLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -91,22 +106,22 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
         bulgingLabel.font = [UIFont systemFontOfSize:28];
         bulgingLabel.textColor = [UIColor whiteColor];
         
-        [self addSubview:bulgingLabel];
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:bulgingLabel
-                                                         attribute:NSLayoutAttributeTop
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeTop
-                                                        multiplier:1.0
-                                                          constant:40.0]];
+        [labelContainer addSubview:bulgingLabel];
+        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:bulgingLabel
+                                                                   attribute:NSLayoutAttributeCenterY
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:labelContainer
+                                                                   attribute:NSLayoutAttributeCenterY
+                                                                  multiplier:1.0
+                                                                    constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:bulgingLabel
-                                                         attribute:NSLayoutAttributeCenterX
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeCenterX
-                                                        multiplier:1.0
-                                                          constant:0.0]];
+        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:bulgingLabel
+                                                                   attribute:NSLayoutAttributeCenterX
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:labelContainer
+                                                                   attribute:NSLayoutAttributeCenterX
+                                                                  multiplier:1.0
+                                                                    constant:0.0]];
         _bulgingLabel = bulgingLabel;
 
         
