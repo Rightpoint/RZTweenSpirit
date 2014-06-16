@@ -174,6 +174,11 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZKeyFrameTween
 
++ (Class)valueClass
+{
+    return Nil;
+}
+
 - (instancetype)init
 {
     return [self initWithCurveType:RZTweenCurveTypeLinear];
@@ -216,9 +221,15 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 }
 
 
-- (void)addKeyValue:(NSValue *)value atTime:(NSTimeInterval)time
+- (void)addKeyValue:(id)value atTime:(NSTimeInterval)time
 {
     NSParameterAssert(value);
+
+    BOOL validClass = [value isKindOfClass:[[self class] valueClass]];
+    NSAssert(validClass, @"Attempting to add value of type %@ when type %@ is expected", NSStringFromClass([value class]), NSStringFromClass([[self class] valueClass]));
+    if ( !validClass ) {
+        return;
+    }
     
     RZTKeyFrame *keyFrame = [RZTKeyFrame keyFrameWithTime:time value:value];
     
@@ -240,7 +251,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 #pragma mark - Private
 
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(NSValue *)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
 {
     NSString *exceptionString = [NSString stringWithFormat:@"Cannot use RZKeyFrameTween directly - must subclass and override %@", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:exceptionString userInfo:nil];
@@ -321,12 +332,17 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZFloatTween
 
++ (Class)valueClass
+{
+    return [NSNumber class];
+}
+
 - (void)addKeyFloat:(CGFloat)keyFloat atTime:(NSTimeInterval)time
 {
     [self addKeyValue:@(keyFloat) atTime:time];
 }
 
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(NSValue *)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
 {
     return @(RZTweenLerp(delta, fromTime, toTime, [(NSNumber *)fromValue floatValue], [(NSNumber *)toValue floatValue]));
 }
@@ -337,12 +353,17 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZBooleanTween
 
++ (Class)valueClass
+{
+    return [NSNumber class];
+}
+
 - (void)addKeyBool:(BOOL)keyBool atTime:(NSTimeInterval)time
 {
     [self addKeyValue:@(keyBool) atTime:time];
 }
 
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(NSValue *)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
 {
     return fromValue;
 }
@@ -353,12 +374,17 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZTransformTween
 
++ (Class)valueClass
+{
+    return [NSValue class];
+}
+
 - (void)addKeyTransform:(CGAffineTransform)transform atTime:(NSTimeInterval)time
 {
     [self addKeyValue:[NSValue valueWithCGAffineTransform:transform] atTime:time];
 }
 
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(NSValue *)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
 {
     CGAffineTransform tf1 = [fromValue CGAffineTransformValue];
     CGAffineTransform tf2 = [toValue CGAffineTransformValue];
@@ -378,12 +404,17 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZRectTween
 
++ (Class)valueClass
+{
+    return [NSValue class];
+}
+
 - (void)addKeyRect:(CGRect)rect atTime:(NSTimeInterval)time
 {
     [self addKeyValue:[NSValue valueWithCGRect:rect] atTime:time];
 }
 
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(NSValue *)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
 {
     CGRect rect1 = [fromValue CGRectValue];
     CGRect rect2 = [toValue CGRectValue];
@@ -401,12 +432,17 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZPointTween
 
-- (void)addKeyPoint:(CGPoint)point atTime:(NSTimeInterval)time
++ (Class)valueClass
 {
+    return [NSValue class];
+}
+
+- (void)addKeyPoint:(CGPoint)point atTime:(NSTimeInterval)time
+{   
     [self addKeyValue:[NSValue valueWithCGPoint:point] atTime:time];
 }
 
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(NSValue *)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
 {
     CGPoint p1 = [fromValue CGPointValue];
     CGPoint p2 = [toValue CGPointValue];
@@ -416,6 +452,45 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
     finalPoint.y = RZTweenLerp(delta, fromTime, toTime, p1.y, p2.y);
 
     return [NSValue valueWithCGPoint:finalPoint];
+}
+
+@end
+
+@implementation RZColorTween
+
++ (Class)valueClass
+{
+    return [UIColor class];
+}
+
+- (void)addKeyColor:(UIColor *)color atTime:(NSTimeInterval)time
+{
+    [self addKeyValue:color atTime:time];
+}
+
+- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
+{
+    CGFloat r1, g1, b1, a1;
+    CGFloat r2, g2, b2, a2;
+    
+    if ( ![fromValue getRed:&r1 green:&g1 blue:&b1 alpha:&a1] ) {
+        [fromValue getWhite:&r1 alpha:&a1];
+        g1 = r1;
+        b1 = r1;
+    }
+    
+    if ( ![toValue getRed:&r2 green:&g2 blue:&b2 alpha:&a2] ) {
+        [toValue getWhite:&r2 alpha:&a2];
+        g2 = r2;
+        b2 = r2;
+    }
+    
+    CGFloat rf = RZTweenLerp(delta, fromTime, toTime, r1, r2);
+    CGFloat gf = RZTweenLerp(delta, fromTime, toTime, g1, g2);
+    CGFloat bf = RZTweenLerp(delta, fromTime, toTime, b1, b2);
+    CGFloat af = RZTweenLerp(delta, fromTime, toTime, a1, a2);
+    
+    return [UIColor colorWithRed:rf green:gf blue:bf alpha:af];
 }
 
 @end

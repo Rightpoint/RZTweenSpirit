@@ -31,7 +31,7 @@
 @import QuartzCore;
 #import "RZTween.h"
 
-typedef void (^RZTweenAnimatorUpdateBlock)(NSValue *value);
+typedef void (^RZTweenAnimatorUpdateBlock)(id value);
 
 @protocol RZTweenAnimatorDelegate;
 
@@ -41,12 +41,14 @@ typedef void (^RZTweenAnimatorUpdateBlock)(NSValue *value);
 @interface RZTweenAnimator : NSObject
 
 /**
-*  Adds a tween for a paticular keyPath on an object.  If the data type for the tween doesn not match the exptected
-*  type for the keyPath, an exception will likely be raised.
-*
-*  @param tween   An object which implemens RZTween to be used to calculate a new value when the time is changed.
-*  @param keyPath The keypath that will be called using KVC
-*  @param object  The object that will be modified by the animator.
+ *  Adds a tween for a paticular keyPath on an object.  If the data type for the tween doesn not match the exptected
+ *  type for the keyPath, an exception will likely be raised.
+ *
+ *  @note @p object is not retained by this method.
+ *
+ *  @param tween   An object which implemens RZTween to be used to calculate a new value when the time is changed.
+ *  @param keyPath The keypath that will be called using KVC
+ *  @param object  The object that will be modified by the animator.
 */
 - (void)addTween:(id<RZTween>)tween forKeyPath:(NSString *)keyPath ofObject:(id)object;
 

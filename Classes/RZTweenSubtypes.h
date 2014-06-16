@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
      */
     RZTweenCurveTypeQuadraticEaseOut,
     /**
-     *  see RZTweenQuadraticEaseInOut for description.
+     *  see RZTweenQuadraticEaseInOut in implementation file for description.
      */
     RZTweenCurveTypeQuadraticEaseInOut,
     /**
@@ -106,14 +106,13 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  *  @param value Value for the keyframe.
  *  @param time  Time for the keyframe.
  *
- *  @warning The values passed in must represent a consistent underlying ObjC type.
- *           Subclasses should ideally implement a scalar-typed version of this method which boxes
- *           a value and calls this implementation.
+ *  @warning The values passed in must represent the same class that is returned by +valueClass.
+ *           Subclasses should implement a typed version of this method which calls through to this implementation.
  */
-- (void)addKeyValue:(NSValue *)value atTime:(NSTimeInterval)time;
+- (void)addKeyValue:(id)value atTime:(NSTimeInterval)time;
 
 /**
- *  Returns a linearly interpolated value between two keyframe times.
+ *  Returns a value linearly interpolated between two keyframe times.
  *  The delta will be calculated based on the time difference and curve type.
  *
  *  @param fromValue The value from which to interpolate.
@@ -126,18 +125,19 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  *
  *  @return The interpolated value.
  */
-- (NSValue *)interpolatedValueFromKeyValue:(NSValue *)fromValue
-                                    atTime:(NSTimeInterval)fromTime
-                                toKeyValue:(NSValue *)toValue
-                                    atTime:(NSTimeInterval)toTime
-                                 withDelta:(float)delta;
+- (id)interpolatedValueFromKeyValue:(id)fromValue
+                             atTime:(NSTimeInterval)fromTime
+                         toKeyValue:(id)toValue
+                             atTime:(NSTimeInterval)toTime
+                          withDelta:(float)delta;
 
 @end
 
 // ----------------------
 
 /**
- * Tween for scalar floating-point (CGFloat) values.
+ *  Tween for scalar floating-point (CGFloat) values.
+ *  Value type returned is NSNumber wrapping CGFloat
  */
 @interface RZFloatTween : RZKeyFrameTween
 
@@ -155,9 +155,10 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 
 /**
  *  Tween for boolean values.
+ *  Value type returned is NSValue wrapping BOOL.
  *
- *  Obviously it's not logical to interpolate between bool values,
- *  so this simply returns the most recent boolean keyframe value.
+ *  @note Obviously it's not logical to interpolate between bool values,
+ *        so this simply returns the most recent boolean keyframe value.
  */
 @interface RZBooleanTween : RZKeyFrameTween
 
@@ -168,10 +169,11 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 // ----------------------
 
 /**
- * Tween for CGAffineTransform values.
+ *  Tween for CGAffineTransform values.
+ *  Value type returned is NSValue wrapping CGAffineTransform.
  *
- * @warning Performs direct linear interpolation between matrices. Rotation
- *          and certain other transforms may not always work correctly.
+ *  @warning Performs direct linear interpolation between matrices. Rotation
+ *           and certain other transforms may not always work correctly.
  */
 @interface RZTransformTween : RZKeyFrameTween
 
@@ -182,7 +184,8 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 // ----------------------
 
 /**
- * Tween for CGRect values.
+ *  Tween for CGRect values.
+ *  Value type returned is NSValue wrapping CGRect.
  */
 @interface RZRectTween : RZKeyFrameTween
 
@@ -193,7 +196,8 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 // ----------------------
 
 /**
- * Tween for CGPoint values.
+ *  Tween for CGPoint values.
+ *  Value type returned is NSValue wrapping CGPoint.
  */
 @interface RZPointTween : RZKeyFrameTween
 
@@ -201,6 +205,19 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 
 @end
 
+// ----------------------
+
+/**
+ *  Tween for UIColor values.
+ *  Value type returned is UIColor.
+ */
+@interface RZColorTween : RZKeyFrameTween
+
+- (void)addKeyColor:(UIColor *)color atTime:(NSTimeInterval)time;
+
+@end
+
+
+
 // TODO:
-// - Color
 // - Bounce Curves.

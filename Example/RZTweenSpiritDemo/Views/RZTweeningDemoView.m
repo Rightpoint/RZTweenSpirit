@@ -34,7 +34,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.2 alpha:1.0];
+        self.backgroundColor = [[self backgroundColors] objectAtIndex:0];
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
         scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -85,9 +85,9 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
                                                           constant:-40.0]];
 
         UILabel *bulgingLabel = [[UILabel alloc] init];
-        
         bulgingLabel.translatesAutoresizingMaskIntoConstraints = NO;
         bulgingLabel.text = @"RZTweenSpirit";
+        bulgingLabel.textAlignment = NSTextAlignmentCenter;
         bulgingLabel.font = [UIFont systemFontOfSize:28];
         bulgingLabel.textColor = [UIColor whiteColor];
         
@@ -126,6 +126,14 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
 {
     __weak __typeof__(self) weakSelf = self;
     
+    /*
+     *  Tween the background color!
+     */
+    RZColorTween *colorTween = [[RZColorTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
+    [[self backgroundColors] enumerateObjectsUsingBlock:^(UIColor *bgColor, NSUInteger idx, BOOL *stop) {
+        [colorTween addKeyColor:bgColor atTime:(double)idx/[[self backgroundColors] count]];
+    }];
+    [self.tweenAnimator addTween:colorTween forKeyPath:@"backgroundColor" ofObject:self];
     
     /*
      *  The clouds have constraints, but we can animate those directly using KVC!
@@ -158,7 +166,6 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     
     // Give the indexes some padding on either side for overscroll
     for ( NSInteger i = -1; i <= nBulges + 1; i++ ) {
-        
         NSTimeInterval normalizedTime = (double)i/nBulges;
         if ( i % 2 == 0 ) {
             [bulgeLabelTween addKeyTransform:CGAffineTransformIdentity atTime:normalizedTime];
@@ -175,8 +182,22 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     [self.tweenAnimator addTween:bulgeLabelTween withUpdateBlock:^(NSValue *value) {
         CATransform3D layerTransform = CATransform3DMakeAffineTransform([value CGAffineTransformValue]);
         weakSelf.bulgingLabel.layer.transform = layerTransform;
+        [weakSelf setNeedsLayout];
     }];
     
+}
+
+- (NSArray *)backgroundColors
+{
+    static NSArray *s_bgColors = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        s_bgColors = @[ [UIColor colorWithRed:0.5059 green:0.5098 blue:0.5255 alpha:1.0000],
+                        [UIColor colorWithRed:0.7255 green:0.7020 blue:0.6471 alpha:1.0000],
+                        [UIColor colorWithRed:0.9098 green:0.7098 blue:0.4863 alpha:1.0000],
+                        [UIColor colorWithRed:0.3176 green:0.5725 blue:0.8431 alpha:1.0000] ];
+    });
+    return s_bgColors;
 }
 
 #pragma mark - UIScrollViewDelegate

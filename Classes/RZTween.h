@@ -31,13 +31,22 @@
 
 /**
  *  An object implementing RZTween provides a mechanism by which to retrieve
- *  a value of an arbitrary numerical type (or anything that can be boxed by NSValue)
- *  at a particular time. A tween can be used as-is or with RZTweenAnimator.
+ *  a value of an arbitrary type at a particular time. A tween can be used as-is 
+ *  or with RZTweenAnimator.
  *
- *  @see RZTweenSubtypes.h for several concrete implementations.
+ *  @see RZTweenSubtypes.h for several concrete keyframe-based implementations.
  */
 
 @protocol RZTween <NSObject, NSCopying>
+
+/**
+ *  The class of value represented by this tween.
+ *  Since neither objc nor swift have parameterized protocols, this is the
+ *  best we can do to ensure the tween deals with a consistent type.
+ *
+ *  @return The class of value represented by this tween.
+ */
++ (Class)valueClass;
 
 /**
  *  Return the value of the tween at a particular point along a timeline.
@@ -46,7 +55,7 @@
  *
  *  @return Value for the provided time.
  */
-- (NSValue *)tweenedValueAtTime:(NSTimeInterval)time;
+- (id)tweenedValueAtTime:(NSTimeInterval)time;
 
 /**
  *  Return whether another tween is equal to this one.

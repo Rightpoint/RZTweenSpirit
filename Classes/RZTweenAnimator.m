@@ -64,7 +64,6 @@
 {
     NSParameterAssert(tween);
     NSParameterAssert(frameBlock);
-    
     [self.tweensToBlocks setObject:[frameBlock copy] forKey:tween];
 }
 
@@ -122,7 +121,7 @@
 - (void)setValuesForCurrentTime
 {
     [self.tweensToBlocks enumerateKeysAndObjectsUsingBlock:^(id<RZTween> tween, RZTweenAnimatorUpdateBlock frameBlock, BOOL *stop) {
-        NSValue *value = [tween tweenedValueAtTime:self.time];
+        id value = [tween tweenedValueAtTime:self.time];
         if (value != nil)
         {
             frameBlock(value);

@@ -27,5 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+/*
+ * Catch-all header for RZTweenSpirit.
+ * The other headers are imported through these.
+ */
+
 #import "RZTweenAnimator.h"
 #import "RZTweenSubtypes.h"
