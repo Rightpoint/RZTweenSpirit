@@ -20,7 +20,7 @@
 		9A8C4911194F3FC200966A8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48ED194F3FC200966A8F /* Foundation.framework */; };
 		9A8C4912194F3FC200966A8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C48F1194F3FC200966A8F /* UIKit.framework */; };
 		9A8C491A194F3FC300966A8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C4918194F3FC300966A8F /* InfoPlist.strings */; };
-		9A8C491C194F3FC300966A8F /* RZTweenSpiritDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C491B194F3FC300966A8F /* RZTweenSpiritDemoTests.m */; };
+		9A8C491C194F3FC300966A8F /* RZTweenSpiritTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C491B194F3FC300966A8F /* RZTweenSpiritTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,11 +47,12 @@
 		9A8C4905194F3FC200966A8F /* RZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RZAppDelegate.h; sourceTree = "<group>"; };
 		9A8C4906194F3FC200966A8F /* RZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZAppDelegate.m; sourceTree = "<group>"; };
 		9A8C4908194F3FC200966A8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9A8C490E194F3FC200966A8F /* RZTweenSpiritDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RZTweenSpiritDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8C490E194F3FC200966A8F /* RZTweenSpiritTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RZTweenSpiritTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8C490F194F3FC200966A8F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9A8C4917194F3FC300966A8F /* RZTweenSpiritDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RZTweenSpiritDemoTests-Info.plist"; sourceTree = "<group>"; };
+		9A8C4917194F3FC300966A8F /* RZTweenSpiritTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "RZTweenSpiritTests-Info.plist"; sourceTree = "<group>"; };
 		9A8C4919194F3FC300966A8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9A8C491B194F3FC300966A8F /* RZTweenSpiritDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZTweenSpiritDemoTests.m; sourceTree = "<group>"; };
+		9A8C491B194F3FC300966A8F /* RZTweenSpiritTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZTweenSpiritTests.m; sourceTree = "<group>"; };
+		9A8C4928194F43FF00966A8F /* RZTweenSpiritTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RZTweenSpiritTests-Prefix.pch"; sourceTree = "<group>"; };
 		E2BC69D71888443193BFC57D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				9A8C48F5194F3FC200966A8F /* RZTweenSpiritDemo */,
-				9A8C4915194F3FC200966A8F /* RZTweenSpiritDemoTests */,
+				9A8C4915194F3FC200966A8F /* RZTweenSpiritTests */,
 				9A8C48EC194F3FC200966A8F /* Frameworks */,
 				9A8C48EB194F3FC200966A8F /* Products */,
 				E2BC69D71888443193BFC57D /* Pods.xcconfig */,
@@ -96,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				9A8C48EA194F3FC200966A8F /* RZTweenSpiritDemo.app */,
-				9A8C490E194F3FC200966A8F /* RZTweenSpiritDemoTests.xctest */,
+				9A8C490E194F3FC200966A8F /* RZTweenSpiritTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,19 +169,20 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		9A8C4915194F3FC200966A8F /* RZTweenSpiritDemoTests */ = {
+		9A8C4915194F3FC200966A8F /* RZTweenSpiritTests */ = {
 			isa = PBXGroup;
 			children = (
-				9A8C491B194F3FC300966A8F /* RZTweenSpiritDemoTests.m */,
+				9A8C491B194F3FC300966A8F /* RZTweenSpiritTests.m */,
 				9A8C4916194F3FC300966A8F /* Supporting Files */,
 			);
-			path = RZTweenSpiritDemoTests;
+			path = RZTweenSpiritTests;
 			sourceTree = "<group>";
 		};
 		9A8C4916194F3FC300966A8F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9A8C4917194F3FC300966A8F /* RZTweenSpiritDemoTests-Info.plist */,
+				9A8C4917194F3FC300966A8F /* RZTweenSpiritTests-Info.plist */,
+				9A8C4928194F43FF00966A8F /* RZTweenSpiritTests-Prefix.pch */,
 				9A8C4918194F3FC300966A8F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -223,7 +225,7 @@
 			);
 			name = RZTweenSpiritTests;
 			productName = RZTweenSpiritDemoTests;
-			productReference = 9A8C490E194F3FC200966A8F /* RZTweenSpiritDemoTests.xctest */;
+			productReference = 9A8C490E194F3FC200966A8F /* RZTweenSpiritTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -251,8 +253,6 @@
 			mainGroup = 9A8C48E1194F3FC200966A8F;
 			productRefGroup = 9A8C48EB194F3FC200966A8F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				9A8C48E9194F3FC200966A8F /* RZTweenSpiritDemo */,
@@ -328,7 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8C491C194F3FC300966A8F /* RZTweenSpiritDemoTests.m in Sources */,
+				9A8C491C194F3FC300966A8F /* RZTweenSpiritTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,13 +524,13 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "RZTweenSpiritTests/RZTweenSpiritTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist";
+				INFOPLIST_FILE = "RZTweenSpiritTests/RZTweenSpiritTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -547,9 +547,9 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "RZTweenSpiritTests/RZTweenSpiritTests-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist";
+				INFOPLIST_FILE = "RZTweenSpiritTests/RZTweenSpiritTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -566,9 +566,9 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RZTweenSpiritDemo/RZTweenSpiritDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "RZTweenSpiritTests/RZTweenSpiritTests-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "RZTweenSpiritDemoTests/RZTweenSpiritDemoTests-Info.plist";
+				INFOPLIST_FILE = "RZTweenSpiritTests/RZTweenSpiritTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

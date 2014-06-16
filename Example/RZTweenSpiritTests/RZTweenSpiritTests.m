@@ -1,6 +1,6 @@
 //
-//  RZTweenSpiritDemoTests.m
-//  RZTweenSpiritDemoTests
+//  RZTweenSpiritTests.m
+//  RZTweenSpiritTests
 //
 //  Created by Nick Donaldson on 6/16/14.
 //  Copyright (c) 2014 Raizlabs. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface RZTweenSpiritDemoTests : XCTestCase
+@interface RZTweenSpiritTests : XCTestCase
 
 @end
 
-@implementation RZTweenSpiritDemoTests
+@implementation RZTweenSpiritTests
 
 - (void)setUp
 {
