@@ -102,7 +102,7 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id<RZTween> tween, id value);
 - (void)stopAnimating;
 
 /**
- *  For notifying a delegate of the state of the RZTweenAnimator.
+ *  Delegate which is notified of the state of the animator.
  */
 @property (nonatomic, weak) id<RZTweenAnimatorDelegate> delegate;
 
