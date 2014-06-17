@@ -3,11 +3,15 @@ RZTweenSpirit
 
 [![Build Status](https://travis-ci.org/Raizlabs/RZTweenSpirit.svg)](https://travis-ci.org/Raizlabs/RZTweenSpirit)
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/Raizlabs/RZTweenSpirit/readme-assets/screencap_optimized.gif" alt="RZTweenSpirit">
+</p>
+
 ## Overview
 
-RZTweenSpirit is an iOS library for piecewise, timeline-based tweening of arbitrary data. 
+RZTweenSpirit is an iOS library for piecewise, timeline-based tweening of values, which is particularly useful for animation timelines.
 
-What's tweening?
+**What's tweening?**
 
 >Inbetweening or **tweening** is the process of generating intermediate frames between two images to give the appearance that the first image evolves smoothly into the second image. Inbetweens are the drawings between the key frames which help to create the illusion of motion. Inbetweening is a key process in all types of animation, including computer animation.
 >
@@ -83,7 +87,7 @@ That's it - you're ready to start making some tweens!
 
 ### Tweens
 
-An object which implements the `RZTween` protocol simply has the ability to return a value for a particular point along a timeline. There are only two methods in the protocol:
+An object which implements the `RZTween` protocol (henceforth refered to as a "tween") simply has the ability to return a value for a particular point along a timeline. There are only two methods in the protocol:
 
 - **`+ (Class)valueClass;`**
 	- Returns the class represented by values produced by this tween. This can be used for type checking, as it is with `RZKeyFrameTween`.
@@ -148,7 +152,7 @@ Once you have some tweens registered, you can set the animator's time offset dir
 
 Because the `RZTween` protocol and the entire RZTweenSpirit architecture is dynamically typed, you can make tweens for literally anything:
 
-- Strings that need to populate a label at different points along a timeline.
+- Strings that need to populate a label at different points along a timeline
 - Images that make up frames of an animated sequence
 - More complex model objects representing some on-screen data
 
