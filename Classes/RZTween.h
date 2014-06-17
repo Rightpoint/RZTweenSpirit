@@ -30,11 +30,11 @@
 @import Foundation;
 
 /**
- *  An object implementing RZTween provides a mechanism by which to retrieve
- *  a value of an arbitrary type at a particular time. A tween can be used as-is 
- *  or with RZTweenAnimator.
+ *  An object implementing @p RZTween provides a mechanism by which to retrieve
+ *  a value of an arbitrary type at a particular time. Objects which implement
+ *  @p RZTween should be added to an instance of @p RZTweenAnimator.
  *
- *  @see RZTweenSubtypes.h for several concrete keyframe-based implementations.
+ *  @see  @p RZTweenSubtypes.h for several concrete keyframe-based implementations of @p RZTween.
  */
 
 @protocol RZTween <NSObject, NSCopying>

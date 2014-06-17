@@ -25,9 +25,10 @@ RZFloatTween *labelAlpha = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveT
 [labelAlpha addKeyFloat:1.0 atTime:10.0];
 [tweenAnimator addTween:arrowAlpha forKeyPath:@"alpha" ofObject:self.titleLabel];
 
-// Use a point tween to animate the center of the label from one point to another with a linear curve
+// Use a point tween to animate the center of the label between three points with a linear curve
 RZPointTween *labelCenter = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
 [labelCenter addKeyPoint:CGPointMake(100, 100) atTime:0.0];
+[labelCenter addKEyPoint:CGPointMake(400, 100) atTime:6.0];
 [labelCenter addKeyPoint:CGpointMake(200, 400) atTime:10.0];
 [tweenAnimator addTween:labelCenter forKeyPath@"center" ofObject:self.titleLabel];
 
@@ -46,7 +47,7 @@ RZPointTween *labelCenter = [[RZPointTween alloc] initWithCurveType:RZTweenCurve
 
 #### Why not use CoreAnimation?
 
-In many cases, CoreAnimation is probably a better choice than RZTweenSpirit. If you're performing one-shot animations with complex curves, chaining animations together, CoreAnimation is definitely the way to go.
+In many situations, CoreAnimation is probably a better choice than RZTweenSpirit. If you need a reliable, proven animation system, CoreAnimation is definitely the way to go. But if you're looking for a more expressive way to create animation timelines, you might find RZTweenSpirit useful!
 
 ## Requirements
 
@@ -68,11 +69,45 @@ Copy all of the files in the `Classes` directory to your project. Linking with `
 
 ## Documentation
 
-RZTweenSpirit not only has the ability to produce intermediate values of any datatype you wish, at any point along a timeline. The primary use case is for scripting complex animation timelines in response to some form of progression, such as a user scrolling through an onboarding flow or a file being downloaded. However, RZTweenSpirit's dynamic API allows you to setup tweening for *any* object or data type you can think of.
-
 ### Getting Started
 
-First, import the `RZTweenSpirit.h` header.
+First, import the `RZTweenSpirit.h` header. Then, allocate and initialize an instance of `RZTweenAnimator`, and hold onto it in a property in your view controller or view:
+
+```
+self.tweenAnimator = [[RZTweenAnimator alloc] init];
+```
+
+That's it - you're ready to start making some tweens!
+
+### Tweens
+
+An object which implements the `RZTween` protocol simply has the ability to return a value for a particular point along a timeline. There are only two methods in the protocol:
+
+- **`+ (Class)valueClass;`**
+	- Returns the class represented by values produced by this tween. This is used by the animator for introspection and type-checking.
+- **`- (id)tweenedValueAtTime:(NSTimeInterval)time;`**
+	- Return a value of the type returned by `valueClass` for the provided time.
+	
+Classes implementing `RZTween` must also implement `NSCopying` as they will be used as keys in an internal dictionary within the animator.
+
+The primary concrete implementation of `RZTween` provided is `RZKeyFrameTween`, which provides facilities for tweening between keyframe values of various types anchored to instants along the timeline, with optional easing curves. See `RZKeyFrameTweens.h` for several concrete subtypes corresponding to different data types (float, point, color, etc).
+
+
+### The Animator
+
+The animator is an object which is used to manage a timeline which drives tweens. It can be used to asynchronously "scrub" the timeline by setting the time directly, or to animate from one point on the timeline to another.
+
+Objects implementing `RZTween` are registered with the animator in one of two ways: KVC or block-based. 
+
+The KVC method takes a keypath and an object for which the keypath will be modified:
+
+```
+[self.tweenAnimator addTween:myRectTween forKeypath:@"frame" ofObject:self.myView];
+```
+
+The block-based method takes a block which will receive a reference to the tween itself and the current value of the tween:
+
+
 
 ### Full Documentation
 
