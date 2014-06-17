@@ -22,6 +22,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 
 @property (nonatomic, weak) UIImageView *cloud1;
 @property (nonatomic, weak) UIImageView *cloud2;
+@property (nonatomic, weak) UIImageView *starView;
 
 @property (nonatomic, strong) NSLayoutConstraint *cloud1CenterX;
 @property (nonatomic, strong) NSLayoutConstraint *cloud2CenterX;
@@ -93,7 +94,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
                                                             toItem:self
                                                          attribute:NSLayoutAttributeBottom
                                                         multiplier:1.0
-                                                          constant:-20.0]];
+                                                          constant:60.0]];
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud2
                                                          attribute:NSLayoutAttributeBottom
@@ -101,7 +102,13 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
                                                             toItem:self
                                                          attribute:NSLayoutAttributeBottom
                                                         multiplier:1.0
-                                                          constant:-60.0]];
+                                                          constant:20.0]];
+        
+        UIImageView *starView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stars"]];
+        starView.translatesAutoresizingMaskIntoConstraints = NO;
+        starView.layer.anchorPoint = CGPointMake(0.5, 1.0);
+        [self insertSubview:starView atIndex:0];
+        _starView = starView;
         
         // To pin to the center and still allow flexible scaling, we need a container to host the label.
         UIView *labelContainer = [[UIView alloc] init];
@@ -136,7 +143,6 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
         [labelContainer addSubview:titleLabel];
         _titleLabel = titleLabel;
 
-        
         _tweenAnimator = [[RZTweenAnimator alloc] init];
         [self setupTweens];
     }
@@ -146,11 +152,16 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) * kRZTweeningDemoViewScrollWidthMultiplier,
+                                             CGRectGetWidth(self.bounds));
+    
     [self.titleLabel sizeToFit];
     UIView *labelContainer = [self.titleLabel superview];
     self.titleLabel.center = CGPointMake(CGRectGetWidth(labelContainer.bounds) * 0.5, CGRectGetHeight(labelContainer.bounds) * 0.5);
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) * kRZTweeningDemoViewScrollWidthMultiplier,
-                                             CGRectGetWidth(self.bounds));
+    
+    // account for anchor point
+    self.starView.center = CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds));
 }
 
 - (void)didMoveToSuperview
@@ -177,9 +188,10 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
      *  You can tween frame/center properties of UIViews directly, but this is restrictive for different device sizes.
      *  But animation can also be done using autolayout (examples below) for dynamic, responsive view layouts.
      */
-    CGFloat const buttonMaxOffsetY = CGRectGetHeight(self.bounds) * 0.4;
-    CGFloat buttonNominalX = CGRectGetWidth(self.bounds) * 0.5;
-    CGFloat buttonNominalY = CGRectGetHeight(self.bounds) * 0.38;
+    CGFloat const buttonMaxOffsetY  = CGRectGetHeight(self.bounds) * 0.4;
+    CGFloat const buttonNominalX    = CGRectGetWidth(self.bounds) * 0.5;
+    CGFloat const buttonNominalY    = CGRectGetHeight(self.bounds) * 0.33;
+    
     RZPointTween *buttonCenterTween = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseOut];
     [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY + buttonMaxOffsetY) atTime:0];
     [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY) atTime:1];
@@ -203,16 +215,12 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     CGFloat const cloud2MaxOffset = 40.0;
     
     RZFloatTween *cloud1ParallaxTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseInOut];
-    [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset atTime:0];
-    [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset - cloud1MaxOffset * 0.1 atTime:-0.1]; // for overscrolling
-    [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset + cloud1MaxOffset atTime:1.0];
-    [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset + cloud1MaxOffset * 1.1 atTime:1.1]; // for overscrolling
+    [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset - cloud1MaxOffset atTime:-0.2]; // for overscrolling
+    [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset + cloud1MaxOffset atTime:1.2]; // for overscrolling
     
     RZFloatTween *cloud2ParallaxTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseInOut];
-    [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset atTime:0];
-    [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset - cloud2MaxOffset * 0.1 atTime:-0.1]; // for overscrolling
-    [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset + cloud2MaxOffset atTime:1.0];
-    [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset + cloud2MaxOffset * 1.1 atTime:1.1]; // for overscrolling
+    [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset - cloud2MaxOffset atTime:-0.2]; // for overscrolling
+    [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset + cloud2MaxOffset atTime:1.2]; // for overscrolling
     
     [self.tweenAnimator addTween:cloud1ParallaxTween forKeyPath:@"constant" ofObject:self.cloud1CenterX];
     [self.tweenAnimator addTween:cloud2ParallaxTween forKeyPath:@"constant" ofObject:self.cloud2CenterX];
@@ -239,6 +247,20 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     [labelAlphaTween addKeyFloat:0.0 atTime:0.0];
     [labelAlphaTween addKeyFloat:1.0 atTime:1.0];
     [self.tweenAnimator addTween:labelAlphaTween forKeyPath:@"alpha" ofObject:self.titleLabel];
+    
+    /*
+     *  Spin those stars
+     */
+    CGFloat const starMaxRotation = M_PI * 0.08;
+    RZFloatTween *starRotationTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
+    [starRotationTween addKeyFloat:-starMaxRotation atTime:-0.2];
+    [starRotationTween addKeyFloat:starMaxRotation atTime:1.2];
+    [self.tweenAnimator addTween:starRotationTween forKeyPath:@"transform.rotation" ofObject:self.starView.layer];
+    
+    RZFloatTween *starAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseOut];
+    [starAlphaTween addKeyFloat:1.0 atTime:0.0];
+    [starAlphaTween addKeyFloat:0.0 atTime:0.4];
+    [self.tweenAnimator addTween:starAlphaTween forKeyPath:@"alpha" ofObject:self.starView];
 }
 
 - (NSArray *)backgroundColors
@@ -246,7 +268,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     static NSArray *s_bgColors = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        s_bgColors = @[ [UIColor colorWithRed:0.2 green:0.2 blue:0.22 alpha:1.0000],
+        s_bgColors = @[ [UIColor colorWithRed:0.1 green:0.1 blue:0.15 alpha:1.0000],
                         [UIColor colorWithRed:0.8863 green:0.5137 blue:0.3255 alpha:1.0000],
                         [UIColor colorWithRed:0.3176 green:0.5725 blue:0.8431 alpha:1.0000] ];
     });
