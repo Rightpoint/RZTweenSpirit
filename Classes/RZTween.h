@@ -46,7 +46,7 @@
  *
  *  @return The class of value represented by this tween.
  */
-+ (Class)valueClass;
++ (Class)tweenedValueClass;
 
 /**
  *  Return the value of the tween at a particular point along a timeline.

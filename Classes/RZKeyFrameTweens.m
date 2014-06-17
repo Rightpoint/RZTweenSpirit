@@ -174,7 +174,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZKeyFrameTween
 
-+ (Class)valueClass
++ (Class)tweenedValueClass
 {
     return Nil;
 }
@@ -225,8 +225,8 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 {
     NSParameterAssert(value);
 
-    BOOL validClass = [value isKindOfClass:[[self class] valueClass]];
-    NSAssert(validClass, @"Attempting to add value of type %@ when type %@ is expected", NSStringFromClass([value class]), NSStringFromClass([[self class] valueClass]));
+    BOOL validClass = [value isKindOfClass:[[self class] tweenedValueClass]];
+    NSAssert(validClass, @"Attempting to add value of type %@ when type %@ is expected", NSStringFromClass([value class]), NSStringFromClass([[self class] tweenedValueClass]));
     if ( !validClass ) {
         return;
     }
@@ -305,7 +305,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZFloatTween
 
-+ (Class)valueClass
++ (Class)tweenedValueClass
 {
     return [NSNumber class];
 }
@@ -326,7 +326,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZBooleanTween
 
-+ (Class)valueClass
++ (Class)tweenedValueClass
 {
     return [NSNumber class];
 }
@@ -347,7 +347,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZRectTween
 
-+ (Class)valueClass
++ (Class)tweenedValueClass
 {
     return [NSValue class];
 }
@@ -377,7 +377,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZPointTween
 
-+ (Class)valueClass
++ (Class)tweenedValueClass
 {
     return [NSValue class];
 }
@@ -405,7 +405,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @implementation RZColorTween
 
-+ (Class)valueClass
++ (Class)tweenedValueClass
 {
     return [UIColor class];
 }

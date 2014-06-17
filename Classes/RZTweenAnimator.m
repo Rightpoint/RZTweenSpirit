@@ -73,6 +73,11 @@
     [self.tweensToBlocks removeObjectForKey:tween];
 }
 
+- (NSArray *)allTweens
+{
+    return [self.tweensToBlocks allKeys];
+}
+
 #pragma mark - Public animation
 
 - (void)setTime:(NSTimeInterval)time

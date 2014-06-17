@@ -68,6 +68,13 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id<RZTween> tween, id value);
 - (void)removeTween:(id<RZTween>)tween;
 
 /**
+ *  Return an array of all tweens registered with this animator.
+ *
+ *  @return An array of objects conforming to @p RZTween.
+ */
+- (NSArray *)allTweens;
+
+/**
  *  Represents the current position of the animation timeline.
  *  Set this to change the timeline position immediately and cancel an existing animation.
  */
