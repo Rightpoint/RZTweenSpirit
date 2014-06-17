@@ -32,6 +32,12 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 
 @property (nonatomic, strong) NSLayoutConstraint *labelYConstraint;
 
+@end
+
+@interface RZTweeningDemoView (Setup)
+
+- (void)setupSubviews;
+- (void)setupTweens;
 
 @end
 
@@ -41,117 +47,9 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
         self.backgroundColor = [[self backgroundColors] objectAtIndex:0];
-        
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
-        scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        scrollView.backgroundColor = [UIColor clearColor];
-        scrollView.delegate = self;
-        [self addSubview:scrollView];
-        _scrollView = scrollView;
-        
-        UILabel *arrowLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        arrowLabel.font = [UIFont systemFontOfSize:28];
-        arrowLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.7];
-        arrowLabel.text = @"➜";
-        [self.scrollView addSubview:arrowLabel];
-        _arrowLabel = arrowLabel;
-        
-        UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
-        startButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
-        startButton.titleLabel.font = [UIFont boldSystemFontOfSize:28];
-        startButton.adjustsImageWhenDisabled = NO;
-        [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [startButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-        [startButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-        [startButton setTitle:@"Start!" forState:UIControlStateNormal];
-        [self addSubview:startButton];
-        _startButton = startButton;
-        
-        UIImageView *cloud1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud1"]];
-        UIImageView *cloud2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud2"]];
-        [cloud1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [cloud2 setTranslatesAutoresizingMaskIntoConstraints:NO];
-        
-        self.cloud1CenterX = [NSLayoutConstraint constraintWithItem:cloud1
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:kRZTweeningDemoViewCloud1StartXOffset];
-        
-        self.cloud2CenterX = [NSLayoutConstraint constraintWithItem:cloud2
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:kRZTweeningDemoViewCloud2StartXOffset];
-        
-        [self addSubview:cloud1];
-        [self addSubview:cloud2];
-        
-        [self addConstraint:self.cloud1CenterX];
-        [self addConstraint:self.cloud2CenterX];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud1
-                                                         attribute:NSLayoutAttributeBottom
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeBottom
-                                                        multiplier:1.0
-                                                          constant:60.0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud2
-                                                         attribute:NSLayoutAttributeBottom
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeBottom
-                                                        multiplier:1.0
-                                                          constant:20.0]];
-        
-        UIImageView *starView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stars"]];
-        starView.translatesAutoresizingMaskIntoConstraints = NO;
-        starView.layer.anchorPoint = CGPointMake(0.5, 1.0);
-        [self insertSubview:starView atIndex:0];
-        _starView = starView;
-        
-        // To pin to the center and still allow flexible scaling, we need a container to host the label.
-        UIView *labelContainer = [[UIView alloc] init];
-        labelContainer.userInteractionEnabled = NO;
-        labelContainer.backgroundColor = [UIColor clearColor];
-        [labelContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self addSubview:labelContainer];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[container]-0-|"
-                                                                     options:kNilOptions
-                                                                     metrics:nil
-                                                                       views:@{ @"container" : labelContainer }]];
-        
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container]"
-                                                                     options:kNilOptions
-                                                                     metrics:nil
-                                                                       views:@{ @"container" : labelContainer }]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:labelContainer
-                                                         attribute:NSLayoutAttributeHeight
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeHeight
-                                                        multiplier:0.25
-                                                          constant:0.0]];
-
-        UILabel *titleLabel       = [[UILabel alloc] init];
-        titleLabel.text           = @"RZTweenSpirit";
-        titleLabel.textAlignment  = NSTextAlignmentCenter;
-        titleLabel.font           = [UIFont systemFontOfSize:42];
-        titleLabel.textColor      = [UIColor whiteColor];
-        [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [labelContainer addSubview:titleLabel];
-        _titleLabel = titleLabel;
-
         _tweenAnimator = [[RZTweenAnimator alloc] init];
+        [self setupSubviews];
         [self setupTweens];
     }
     return self;
@@ -166,7 +64,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     
     // Size the arrow label
     [self.arrowLabel sizeToFit];
-    self.arrowLabel.center = CGPointMake(CGRectGetWidth(self.bounds) - 30.0,
+    self.arrowLabel.center = CGPointMake(CGRectGetWidth(self.bounds) - 80.0,
                                          CGRectGetHeight(self.bounds) * 0.5);
     
     // Size the title label
@@ -183,6 +81,146 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     [super didMoveToSuperview];
     [self.scrollView setContentOffset:CGPointZero];
     [self.tweenAnimator setTime:0];
+}
+
+
+
+- (NSArray *)backgroundColors
+{
+    static NSArray *s_bgColors = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        s_bgColors = @[ [UIColor colorWithRed:0.1 green:0.1 blue:0.15 alpha:1.0000],
+                        [UIColor colorWithRed:0.8863 green:0.5137 blue:0.3255 alpha:1.0000],
+                        [UIColor colorWithRed:0.3176 green:0.5725 blue:0.8431 alpha:1.0000] ];
+    });
+    return s_bgColors;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    /*
+     * When the scrollview scrolls, set the tween animator's time. This will update all tweens.
+     */
+    CGFloat totalScrollLength = scrollView.contentSize.width - CGRectGetWidth(scrollView.frame);
+    CGFloat normalizedTime    = scrollView.contentOffset.x / totalScrollLength;
+    [self.tweenAnimator setTime:normalizedTime];
+}
+
+@end
+
+@implementation RZTweeningDemoView (Setup)
+
+- (void)setupSubviews
+{
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    scrollView.backgroundColor = [UIColor clearColor];
+    scrollView.delegate = self;
+    [self addSubview:scrollView];
+    _scrollView = scrollView;
+    
+    UILabel *arrowLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    arrowLabel.font = [UIFont systemFontOfSize:28];
+    arrowLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+    arrowLabel.text = @"Drag Me →";
+    [self.scrollView addSubview:arrowLabel];
+    _arrowLabel = arrowLabel;
+    
+    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+    startButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    startButton.titleLabel.font = [UIFont boldSystemFontOfSize:28];
+    startButton.adjustsImageWhenDisabled = NO;
+    [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [startButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    [startButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    [startButton setTitle:@"Start!" forState:UIControlStateNormal];
+    [self addSubview:startButton];
+    _startButton = startButton;
+    
+    UIImageView *cloud1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud1"]];
+    UIImageView *cloud2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud2"]];
+    [cloud1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [cloud2 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    self.cloud1CenterX = [NSLayoutConstraint constraintWithItem:cloud1
+                                                      attribute:NSLayoutAttributeCenterX
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self
+                                                      attribute:NSLayoutAttributeCenterX
+                                                     multiplier:1.0
+                                                       constant:kRZTweeningDemoViewCloud1StartXOffset];
+    
+    self.cloud2CenterX = [NSLayoutConstraint constraintWithItem:cloud2
+                                                      attribute:NSLayoutAttributeCenterX
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self
+                                                      attribute:NSLayoutAttributeCenterX
+                                                     multiplier:1.0
+                                                       constant:kRZTweeningDemoViewCloud2StartXOffset];
+    
+    [self addSubview:cloud1];
+    [self addSubview:cloud2];
+    
+    [self addConstraint:self.cloud1CenterX];
+    [self addConstraint:self.cloud2CenterX];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud1
+                                                     attribute:NSLayoutAttributeBottom
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1.0
+                                                      constant:60.0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud2
+                                                     attribute:NSLayoutAttributeBottom
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1.0
+                                                      constant:20.0]];
+    
+    UIImageView *starView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stars"]];
+    starView.translatesAutoresizingMaskIntoConstraints = NO;
+    starView.layer.anchorPoint = CGPointMake(0.5, 1.0);
+    [self insertSubview:starView atIndex:0];
+    _starView = starView;
+    
+    // To pin to the center and still allow flexible scaling, we need a container to host the label.
+    UIView *labelContainer = [[UIView alloc] init];
+    labelContainer.userInteractionEnabled = NO;
+    labelContainer.backgroundColor = [UIColor clearColor];
+    [labelContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:labelContainer];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[container]-0-|"
+                                                                 options:kNilOptions
+                                                                 metrics:nil
+                                                                   views:@{ @"container" : labelContainer }]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container]"
+                                                                 options:kNilOptions
+                                                                 metrics:nil
+                                                                   views:@{ @"container" : labelContainer }]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:labelContainer
+                                                     attribute:NSLayoutAttributeHeight
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeHeight
+                                                    multiplier:0.25
+                                                      constant:0.0]];
+    
+    UILabel *titleLabel       = [[UILabel alloc] init];
+    titleLabel.text           = @"RZTweenSpirit";
+    titleLabel.textAlignment  = NSTextAlignmentCenter;
+    titleLabel.font           = [UIFont systemFontOfSize:42];
+    titleLabel.textColor      = [UIColor whiteColor];
+    [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [labelContainer addSubview:titleLabel];
+    _titleLabel = titleLabel;
 }
 
 - (void)setupTweens
@@ -229,7 +267,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     [buttonEnabledTween addKeyBool:NO atTime:0];
     [buttonEnabledTween addKeyBool:YES atTime:0.9];
     [self.tweenAnimator addTween:buttonEnabledTween forKeyPath:@"enabled" ofObject:self.startButton];
-
+    
     /*
      *  The clouds have constraints, but we can animate those directly using KVC!
      */
@@ -283,30 +321,6 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     [starAlphaTween addKeyFloat:1.0 atTime:0.0];
     [starAlphaTween addKeyFloat:0.0 atTime:0.4];
     [self.tweenAnimator addTween:starAlphaTween forKeyPath:@"alpha" ofObject:self.starView];
-}
-
-- (NSArray *)backgroundColors
-{
-    static NSArray *s_bgColors = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        s_bgColors = @[ [UIColor colorWithRed:0.1 green:0.1 blue:0.15 alpha:1.0000],
-                        [UIColor colorWithRed:0.8863 green:0.5137 blue:0.3255 alpha:1.0000],
-                        [UIColor colorWithRed:0.3176 green:0.5725 blue:0.8431 alpha:1.0000] ];
-    });
-    return s_bgColors;
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    /*
-     * When the scrollview scrolls, set the tween animator's time. This will update all tweens.
-     */
-    CGFloat totalScrollLength = scrollView.contentSize.width - CGRectGetWidth(scrollView.frame);
-    CGFloat normalizedTime    = scrollView.contentOffset.x / totalScrollLength;
-    [self.tweenAnimator setTime:normalizedTime];
 }
 
 @end
