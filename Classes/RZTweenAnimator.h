@@ -60,11 +60,16 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id value);
  */
 - (void)addTween:(id<RZTween>)tween withUpdateBlock:(RZTweenAnimatorUpdateBlock)frameBlock;
 
-// TODO: removeTween
+/**
+ *  Remove a tween from the animator. Does nothing if tween is not registered with this animator.
+ *
+ *  @param tween Tween to remove. Must not be nil.
+ */
+- (void)removeTween:(id<RZTween>)tween;
 
 /**
  *  Represents the current position of the animation timeline.
- *  Set this to change the timeline position immediately.
+ *  Set this to change the timeline position immediately and cancel an existing animation.
  */
 @property (nonatomic, assign) NSTimeInterval time;
 
@@ -83,7 +88,11 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id value);
  */
 - (void)animateToTime:(NSTimeInterval)time overDuration:(NSTimeInterval)duration;
 
-// TODO: stopAnimating
+/**
+ *  Immediately cancel any animation in progress.
+ *  The timeline will be left in its current state whenever this is called.
+ */
+- (void)stopAnimating;
 
 /**
  *  For notifying a delegate of the state of the RZTweenAnimator.
@@ -100,8 +109,30 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id value);
 @protocol RZTweenAnimatorDelegate <NSObject>
 
 @optional
+
+/**
+ *  Called whenever an animation is started. 
+ *  Will not be called when time is set directly.
+ *
+ *  @param animator The animator for which the animatino was started.
+ *  @param time     The destination time offset for the animation.
+ *  @param duration The duration of the animation.
+ */
 - (void)tweenAnimatorWillBeginAnimating:(RZTweenAnimator *)animator toTime:(NSTimeInterval)time overDuration:(NSTimeInterval)duration;
+
+/**
+ *  Called whenever the animator is updated, including during animations and when time is set directly.
+ *
+ *  @param animator The animator that animated.
+ */
 - (void)tweenAnimatorDidAnimate:(RZTweenAnimator *)animator;
+
+/**
+ *  Called when an animation finishes or is manually stopped.
+ *  Will not be called when time is set directly.
+ *
+ *  @param animator The animator for which the animation ended.
+ */
 - (void)tweenAnimatorDidFinishAnimating:(RZTweenAnimator *)animator;
 
 @end

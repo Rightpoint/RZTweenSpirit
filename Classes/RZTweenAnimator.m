@@ -67,6 +67,12 @@
     [self.tweensToBlocks setObject:[frameBlock copy] forKey:tween];
 }
 
+- (void)removeTween:(id<RZTween>)tween
+{
+    NSParameterAssert(tween);
+    [self.tweensToBlocks removeObjectForKey:tween];
+}
+
 #pragma mark - Public animation
 
 - (void)setTime:(NSTimeInterval)time
@@ -106,6 +112,11 @@
         
         [self animateToTime:time usingScale:scale];
     }
+}
+
+- (void)stopAnimating
+{
+    [self cancelFrameTimer];
 }
 
 #pragma mark - Private
