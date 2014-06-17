@@ -102,11 +102,11 @@ Despite the name, tweens do not necessarily have to interpolate between differen
 
 The primary concrete implementation of `RZTween` provided is `RZKeyFrameTween`, which provides facilities for tweening between keyframe values of various types anchored to instants along the timeline, with optional easing curves. See `RZKeyFrameTweens.h` for several concrete subtypes corresponding to different data types:
 
-- `CGFloat` (wrapped in `NSNumber`)
-- `BOOL` (wrapped in `NSNumber`)
-- `CGRect` (wrapped in `NSValue`)
-- `CGPoint` (wrapped in `NSValue`)
-- `UIColor`
+- `RZFloatTween` : `CGFloat` (wrapped in `NSNumber`)
+- `RZBooleanTween` : `BOOL` (wrapped in `NSNumber`)
+- `RZRectTween` : `CGRect` (wrapped in `NSValue`)
+- `RZPointTween` : `CGPoint` (wrapped in `NSValue`)
+- `RZColorTween` : `UIColor`
 
 
 ### The Animator
