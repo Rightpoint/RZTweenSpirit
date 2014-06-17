@@ -12,11 +12,13 @@ RZTweenSpirit is an iOS library for piecewise, timeline-based tweening of arbitr
 >
 > Wikipedia
 
-RZTweenSpirit extends that definition to include the ability to produce intermediate values of any datatype you wish, at any point along a timeline. The primary use case is for scripting complex animation timelines in response to some form of progression, such as a user scrolling through an onboarding flow or a file being downloaded. However, RZTweenSpirit's dynamic architecture allows you to setup tweening for *any* object or data type you can think of.
+RZTweenSpirit is great for scripting animation timelines, but it can also do much more.
 
-Here, let's see a simple example:
+Let's see a simple example:
 
+```objc
 
+```
 
 #### Why not use CoreAnimation?
 
@@ -42,11 +44,15 @@ Copy all of the files in the `Classes` directory to your project. Linking with `
 
 ## Documentation
 
+RZTweenSpirit not only has the ability to produce intermediate values of any datatype you wish, at any point along a timeline. The primary use case is for scripting complex animation timelines in response to some form of progression, such as a user scrolling through an onboarding flow or a file being downloaded. However, RZTweenSpirit's dynamic API allows you to setup tweening for *any* object or data type you can think of.
+
 ### Getting Started
+
+First, import the `RZTweenSpirit.h` header.
 
 ### Full Documentation
 
-## Example
+For more complete documentation, see the [CocoaDocs]() page and the example project.
 
 ## License
 
