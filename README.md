@@ -1,8 +1,7 @@
 RZTweenSpirit
 =============
 
-
-
+[![Build Status](https://travis-ci.org/Raizlabs/RZTweenSpirit.svg)](https://travis-ci.org/Raizlabs/RZTweenSpirit)
 
 ## Overview
 
@@ -16,7 +15,32 @@ RZTweenSpirit is great for scripting animation timelines, but it can also do muc
 
 Let's see a simple example:
 
-```objc
+```
+// Create an animator
+RZTweenAnimator *tweenAnimator = [[RZTweenAnimator alloc] init];
+
+// Use a float tween to animate the opacity of a label from 0 to 1 over 10 seconds with an eased-out curve
+RZFloatTween *labelAlpha = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+[labelAlpha addKeyFloat:0.0 atTime:0.0];
+[labelAlpha addKeyFloat:1.0 atTime:10.0];
+[tweenAnimator addTween:arrowAlpha forKeyPath:@"alpha" ofObject:self.titleLabel];
+
+// Use a point tween to animate the center of the label from one point to another with a linear curve
+RZPointTween *labelCenter = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
+[labelCenter addKeyPoint:CGPointMake(100, 100) atTime:0.0];
+[labelCenter addKeyPoint:CGpointMake(200, 400) atTime:10.0];
+[tweenAnimator addTween:labelCenter forKeyPath@"center" ofObject:self.titleLabel];
+
+// You can set the time on the animator directly to jump immediately to the corresponding values in the timeline
+// This is super useful for "scrubbing" the timeline in response to, say, a scrollview being scrolled
+[tweenAnimator setTime:0];
+
+// You can animate the timeline from its current point to another point
+[tweenAnimator animateToTime:10.0];
+
+// You can also animate to another point in a specific duration.
+// It helps to think of "time" as more of an offset along the timeline than a specific instant measured in seconds.
+[tweenAnimator animateToTime:10.0 overDuration:20.0]; // (half speed if starting at 0)
 
 ```
 
