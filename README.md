@@ -5,7 +5,9 @@ RZTweenSpirit
 
 ## Overview
 
-RZTweenSpirit is an iOS library for piecewise, timeline-based tweening of arbitrary data. What's tweening?
+RZTweenSpirit is an iOS library for piecewise, timeline-based tweening of arbitrary data. 
+
+What's tweening?
 
 >Inbetweening or **tweening** is the process of generating intermediate frames between two images to give the appearance that the first image evolves smoothly into the second image. Inbetweens are the drawings between the key frames which help to create the illusion of motion. Inbetweening is a key process in all types of animation, including computer animation.
 >
