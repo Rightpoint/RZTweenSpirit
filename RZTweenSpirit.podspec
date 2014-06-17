@@ -1,5 +1,4 @@
 Pod::Spec.new do |s|
-  
   s.name         = "RZTweenSpirit"
   s.version      = "0.0.1"
   s.summary      = "A piecewise tweening/animation library for iOS."
@@ -17,9 +16,9 @@ Pod::Spec.new do |s|
                            "Alex Rouse" => "alex.rouse@raizlabs.com" }
   s.social_media_url   = "http://twitter.com/raizlabs"
   
-  s.platform     = :ios, "6.0"
+  s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/Raizlabs/RZTweenSpirit.git", :branch => "develop" }
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files = "Classes", "Classes/**/*.{h,m}"
   s.requires_arc = true
-  
+  s.frameworks   = 'QuartzCore'
 end

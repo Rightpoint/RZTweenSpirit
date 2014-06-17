@@ -123,6 +123,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     _scrollView = scrollView;
     
     UILabel *arrowLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    arrowLabel.backgroundColor = [UIColor clearColor];
     arrowLabel.font = [UIFont systemFontOfSize:28];
     arrowLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.7];
     arrowLabel.text = @"Drag Me →";
@@ -214,6 +215,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
                                                       constant:0.0]];
     
     UILabel *titleLabel       = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.text           = @"RZTweenSpirit";
     titleLabel.textAlignment  = NSTextAlignmentCenter;
     titleLabel.font           = [UIFont systemFontOfSize:42];
