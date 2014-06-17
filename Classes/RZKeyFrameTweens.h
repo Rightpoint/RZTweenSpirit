@@ -38,7 +38,7 @@
 #import "RZTween.h"
 
 /**
- *  Different animation curves that are supported by the tween.
+ *  Different animation curves for keyframe easing.
  */
 typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 {
