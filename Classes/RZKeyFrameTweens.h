@@ -163,6 +163,12 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  */
 @interface RZBooleanTween : RZKeyFrameTween
 
+/**
+ *  Add a BOOL value to be anchored at a particular time.
+ *
+ *  @param keyBool The BOOL value for the particular time.
+ *  @param time    The time at which to anchor the BOOL value.
+ */
 - (void)addKeyBool:(BOOL)keyBool atTime:(NSTimeInterval)time;
 
 @end
@@ -175,6 +181,12 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  */
 @interface RZRectTween : RZKeyFrameTween
 
+/**
+ *  Add a CGRect value to be anchored at a particular time.
+ *
+ *  @param rect    The CGRect value for the particular time.
+ *  @param time    The time at which to anchor the CGRect value.
+ */
 - (void)addKeyRect:(CGRect)rect atTime:(NSTimeInterval)time;
 
 @end
@@ -187,6 +199,12 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  */
 @interface RZPointTween : RZKeyFrameTween
 
+/**
+ *  Add a CGPoint value to be anchored at a particular time.
+ *
+ *  @param point   The CGPoint value for the particular time.
+ *  @param time    The time at which to anchor the CGPoint value.
+ */
 - (void)addKeyPoint:(CGPoint)point atTime:(NSTimeInterval)time;
 
 @end
@@ -199,6 +217,12 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  */
 @interface RZColorTween : RZKeyFrameTween
 
+/**
+ *  Add a UIColor value to be anchored at a particular time.
+ *
+ *  @param color   The UIColor value for the particular time.
+ *  @param time    The time at which to anchor the UIColor value.
+ */
 - (void)addKeyColor:(UIColor *)color atTime:(NSTimeInterval)time;
 
 @end
