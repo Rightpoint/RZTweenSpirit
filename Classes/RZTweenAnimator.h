@@ -31,7 +31,7 @@
 @import QuartzCore;
 #import "RZTween.h"
 
-typedef void (^RZTweenAnimatorUpdateBlock)(id value);
+typedef void (^RZTweenAnimatorUpdateBlock)(id<RZTween> tween, id value);
 
 @protocol RZTweenAnimatorDelegate;
 

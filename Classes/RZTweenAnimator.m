@@ -55,7 +55,7 @@
 - (void)addTween:(id<RZTween>)tween forKeyPath:(NSString *)keyPath ofObject:(id)object
 {
     __weak __typeof(object) weakObj = object;
-    [self addTween:tween withUpdateBlock:^(NSValue *value) {
+    [self addTween:tween withUpdateBlock:^(id<RZTween> tween, NSValue *value) {
         [weakObj setValue:value forKeyPath:keyPath];
     }];
 }
@@ -135,7 +135,7 @@
         id value = [tween tweenedValueAtTime:self.time];
         if (value != nil)
         {
-            frameBlock(value);
+            frameBlock(tween, value);
         }
     }];
     

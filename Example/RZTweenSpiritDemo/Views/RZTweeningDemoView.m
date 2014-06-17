@@ -259,10 +259,15 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY) atTime:1];
     [self.tweenAnimator addTween:buttonCenterTween forKeyPath:@"center" ofObject:self.startButton];
     
+    // You can also use a block to do tweening.
     RZFloatTween *buttonAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseIn];
     [buttonAlphaTween addKeyFloat:0.0 atTime:0];
     [buttonAlphaTween addKeyFloat:1.0 atTime:1];
-    [self.tweenAnimator addTween:buttonAlphaTween forKeyPath:@"alpha" ofObject:self.startButton];
+    
+    __weak __typeof__(self) wself = self;
+    [self.tweenAnimator addTween:buttonAlphaTween withUpdateBlock:^(id<RZTween> tween, id value) {
+        wself.startButton.alpha = [value floatValue];
+    }];
     
     // Don't enable until we are all the way scrolled down
     RZBooleanTween *buttonEnabledTween = [[RZBooleanTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
