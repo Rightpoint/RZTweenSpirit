@@ -84,7 +84,7 @@ That's it - you're ready to start making some tweens!
 An object which implements the `RZTween` protocol simply has the ability to return a value for a particular point along a timeline. There are only two methods in the protocol:
 
 - **`+ (Class)valueClass;`**
-	- Returns the class represented by values produced by this tween. This is used by the animator for introspection and type-checking.
+	- Returns the class represented by values produced by this tween. This can be used for type-checking, as it is with `RZKeyFrameTween`.
 - **`- (id)tweenedValueAtTime:(NSTimeInterval)time;`**
 	- Return a value of the type returned by `valueClass` for the provided time.
 	
