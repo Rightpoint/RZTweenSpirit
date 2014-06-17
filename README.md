@@ -1,4 +1,53 @@
 RZTweenSpirit
 =============
 
-Piecewise tweening/animation library for iOS
+
+
+
+## Overview
+
+RZTweenSpirit is an iOS library for piecewise, timeline-based tweening of arbitrary data. What's tweening?
+
+>Inbetweening or **tweening** is the process of generating intermediate frames between two images to give the appearance that the first image evolves smoothly into the second image. Inbetweens are the drawings between the key frames which help to create the illusion of motion. Inbetweening is a key process in all types of animation, including computer animation.
+>
+> Wikipedia
+
+RZTweenSpirit extends that definition to include the ability to produce intermediate values of any datatype you wish, at any point along a timeline. The primary use case is for scripting complex animation timelines in response to some form of progression, such as a user scrolling through an onboarding flow or a file being downloaded. However, RZTweenSpirit's dynamic architecture allows you to setup tweening for *any* object or data type you can think of.
+
+Here, let's see a simple example:
+
+
+
+#### Why not use CoreAnimation?
+
+In many cases, CoreAnimation is probably a better choice than RZTweenSpirit. If you're performing one-shot animations with complex curves, chaining animations together, CoreAnimation is definitely the way to go.
+
+## Requirements
+
+RZTweenSpirit supports iOS 7.0+.
+
+## Installation
+
+#### CocoaPods (recommended)
+
+Simply add the library to your podfile, optionally specifying a version number:
+
+`pod 'RZTweenSpirit' '~> 0.1'`
+
+RZTweenSpirit uses semantic versioning. Please check the README periodically for information about updates.
+
+#### Manual Installation
+
+Copy all of the files in the `Classes` directory to your project. Linking with `QuartzCore` is also required, but it should be implicit through the use of framework modules in the file headers.
+
+## Documentation
+
+### Getting Started
+
+### Full Documentation
+
+## Example
+
+## License
+
+RZTweenSpirit is licensed under the MIT license. See `LICENSE` for details.
