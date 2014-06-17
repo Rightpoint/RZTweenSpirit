@@ -8,9 +8,9 @@
 
 #import "RZTweeningDemoView.h"
 
-static CGFloat const kRZTweeningDemoViewScrollHeight        = 1600.0;
-static CGFloat const kRZTweeningDemoViewCloud1StartXOffset  = -40.0;
-static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
+static CGFloat const kRZTweeningDemoViewScrollWidthMultiplier   = 5.0;
+static CGFloat const kRZTweeningDemoViewCloud1StartXOffset      = -60.0;
+static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 
 @interface RZTweeningDemoView () <UIScrollViewDelegate>
 
@@ -19,12 +19,16 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
 @property (nonatomic, readwrite, strong) RZTweenAnimator *tweenAnimator;
 
 @property (nonatomic, weak) UIScrollView *scrollView;
+
 @property (nonatomic, weak) UIImageView *cloud1;
 @property (nonatomic, weak) UIImageView *cloud2;
-@property (nonatomic, weak) UILabel *bulgingLabel;
 
 @property (nonatomic, strong) NSLayoutConstraint *cloud1CenterX;
 @property (nonatomic, strong) NSLayoutConstraint *cloud2CenterX;
+
+@property (nonatomic, weak) UILabel *titleLabel;
+
+@property (nonatomic, strong) NSLayoutConstraint *labelYConstraint;
 
 
 @end
@@ -47,7 +51,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
         
         UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
         startButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
-        startButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+        startButton.titleLabel.font = [UIFont boldSystemFontOfSize:28];
         startButton.adjustsImageWhenDisabled = NO;
         [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [startButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
@@ -58,8 +62,8 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
         
         UIImageView *cloud1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud1"]];
         UIImageView *cloud2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloud2"]];
-        cloud1.translatesAutoresizingMaskIntoConstraints = NO;
-        cloud2.translatesAutoresizingMaskIntoConstraints = NO;
+        [cloud1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [cloud2 setTranslatesAutoresizingMaskIntoConstraints:NO];
         
         self.cloud1CenterX = [NSLayoutConstraint constraintWithItem:cloud1
                                                           attribute:NSLayoutAttributeCenterX
@@ -82,6 +86,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
         
         [self addConstraint:self.cloud1CenterX];
         [self addConstraint:self.cloud2CenterX];
+        
         [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud1
                                                          attribute:NSLayoutAttributeBottom
                                                          relatedBy:NSLayoutRelationEqual
@@ -89,13 +94,14 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
                                                          attribute:NSLayoutAttributeBottom
                                                         multiplier:1.0
                                                           constant:-20.0]];
+        
         [self addConstraint:[NSLayoutConstraint constraintWithItem:cloud2
                                                          attribute:NSLayoutAttributeBottom
                                                          relatedBy:NSLayoutRelationEqual
                                                             toItem:self
                                                          attribute:NSLayoutAttributeBottom
                                                         multiplier:1.0
-                                                          constant:-40.0]];
+                                                          constant:-60.0]];
         
         // To pin to the center and still allow flexible scaling, we need a container to host the label.
         UIView *labelContainer = [[UIView alloc] init];
@@ -107,20 +113,20 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:@{ @"container" : labelContainer }]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container(==100)]"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container(==120)]"
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:@{ @"container" : labelContainer }]];
 
-        UILabel *bulgingLabel = [[UILabel alloc] init];
-        bulgingLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        bulgingLabel.text = @"RZTweenSpirit";
-        bulgingLabel.textAlignment = NSTextAlignmentCenter;
-        bulgingLabel.font = [UIFont systemFontOfSize:28];
-        bulgingLabel.textColor = [UIColor whiteColor];
+        UILabel *titleLabel       = [[UILabel alloc] init];
+        titleLabel.text           = @"RZTweenSpirit";
+        titleLabel.textAlignment  = NSTextAlignmentCenter;
+        titleLabel.font           = [UIFont systemFontOfSize:34];
+        titleLabel.textColor      = [UIColor whiteColor];
+        [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
         
-        [labelContainer addSubview:bulgingLabel];
-        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:bulgingLabel
+        [labelContainer addSubview:titleLabel];
+        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
                                                                    attribute:NSLayoutAttributeCenterY
                                                                    relatedBy:NSLayoutRelationEqual
                                                                       toItem:labelContainer
@@ -128,14 +134,14 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
                                                                   multiplier:1.0
                                                                     constant:0.0]];
         
-        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:bulgingLabel
+        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
                                                                    attribute:NSLayoutAttributeCenterX
                                                                    relatedBy:NSLayoutRelationEqual
                                                                       toItem:labelContainer
                                                                    attribute:NSLayoutAttributeCenterX
                                                                   multiplier:1.0
                                                                     constant:0.0]];
-        _bulgingLabel = bulgingLabel;
+        _titleLabel = titleLabel;
 
         
         _tweenAnimator = [[RZTweenAnimator alloc] init];
@@ -147,13 +153,19 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds), kRZTweeningDemoViewScrollHeight);
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) * kRZTweeningDemoViewScrollWidthMultiplier,
+                                             CGRectGetWidth(self.bounds));
+}
+
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    [self.scrollView setContentOffset:CGPointZero];
+    [self.tweenAnimator setTime:0];
 }
 
 - (void)setupTweens
 {
-    __weak __typeof__(self) weakSelf = self;
-    
     /*
      *  Tween the background color!
      */
@@ -166,12 +178,15 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     
     /*
      *  Tween the start button!
-     *  You can tween view properties directly, but this is restrictive - recommend using
-     *  autolayout (examples below) for dynamic, responsive view layouts.
+     *  You can tween frame/center properties of UIViews directly, but this is restrictive for different device sizes.
+     *  But animation can also be done using autolayout (examples below) for dynamic, responsive view layouts.
      */
+    CGFloat const buttonMaxOffsetY = CGRectGetHeight(self.bounds) * 0.3;
+    CGFloat buttonNominalX = CGRectGetWidth(self.bounds) * 0.5;
+    CGFloat buttonNominalY = CGRectGetHeight(self.bounds) * 0.4;
     RZPointTween *buttonCenterTween = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseOut];
-    [buttonCenterTween addKeyPoint:CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds) * 0.5 + 20.0) atTime:0];
-    [buttonCenterTween addKeyPoint:CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds) * 0.5) atTime:1];
+    [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY + buttonMaxOffsetY) atTime:0];
+    [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY) atTime:1];
     [self.tweenAnimator addTween:buttonCenterTween forKeyPath:@"center" ofObject:self.startButton];
     
     RZFloatTween *buttonAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseIn];
@@ -188,16 +203,16 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     /*
      *  The clouds have constraints, but we can animate those directly using KVC!
      */
-    CGFloat const cloud1MaxOffset = -80.0;
-    CGFloat const cloud2MaxOffset = 100.0;
+    CGFloat const cloud1MaxOffset = 160.0;
+    CGFloat const cloud2MaxOffset = 40.0;
     
-    RZFloatTween *cloud1ParallaxTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseIn];
+    RZFloatTween *cloud1ParallaxTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseInOut];
     [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset atTime:0];
     [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset - cloud1MaxOffset * 0.1 atTime:-0.1]; // for overscrolling
     [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset + cloud1MaxOffset atTime:1.0];
     [cloud1ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud1StartXOffset + cloud1MaxOffset * 1.1 atTime:1.1]; // for overscrolling
     
-    RZFloatTween *cloud2ParallaxTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseIn];
+    RZFloatTween *cloud2ParallaxTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseInOut];
     [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset atTime:0];
     [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset - cloud2MaxOffset * 0.1 atTime:-0.1]; // for overscrolling
     [cloud2ParallaxTween addKeyFloat:kRZTweeningDemoViewCloud2StartXOffset + cloud2MaxOffset atTime:1.0];
@@ -209,32 +224,27 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     /*
      *  The banner label also has constraints, but its transform can still be animated!
      */
-    NSInteger const nBulges     = 3;
-    CGFloat   const bulgeScale  = 1.5;
-    
-    RZTransformTween *bulgeLabelTween = [[RZTransformTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseInOut];
-    
-    // Give the indexes some padding on either side for overscroll
-    for ( NSInteger i = -1; i <= nBulges + 1; i++ ) {
-        NSTimeInterval normalizedTime = (double)i/nBulges;
-        if ( i % 2 == 0 ) {
-            [bulgeLabelTween addKeyTransform:CGAffineTransformIdentity atTime:normalizedTime];
-        }
-        else {
-            [bulgeLabelTween addKeyTransform:CGAffineTransformMakeScale(bulgeScale, bulgeScale) atTime:normalizedTime];
-        }
-    }
+    CGFloat const labelMaxScale = 1.5;
+    RZTransformTween *labelScaleTween = [[RZTransformTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+    CGAffineTransform labelInitialTransform = CGAffineTransformMakeScale(labelMaxScale, labelMaxScale);
+    labelInitialTransform = CGAffineTransformRotate(labelInitialTransform, M_PI * 0.1);
+    [labelScaleTween addKeyTransform:labelInitialTransform atTime:0.0];
+    [labelScaleTween addKeyTransform:CGAffineTransformIdentity atTime:1.0];
     
     /*
      * The layer transform provides much more efficient animation than the view
      * transform when autolayout is running the show.
      */
-    [self.tweenAnimator addTween:bulgeLabelTween withUpdateBlock:^(NSValue *value) {
+    __weak __typeof__(self) weakSelf = self;
+    [self.tweenAnimator addTween:labelScaleTween withUpdateBlock:^(NSValue *value) {
         CATransform3D layerTransform = CATransform3DMakeAffineTransform([value CGAffineTransformValue]);
-        weakSelf.bulgingLabel.layer.transform = layerTransform;
+        weakSelf.titleLabel.transform = [value CGAffineTransformValue];
     }];
     
-    [self.tweenAnimator setTime:0];
+    RZFloatTween *labelAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+    [labelAlphaTween addKeyFloat:0.0 atTime:0.0];
+    [labelAlphaTween addKeyFloat:1.0 atTime:1.0];
+    [self.tweenAnimator addTween:labelAlphaTween forKeyPath:@"alpha" ofObject:self.titleLabel];
 }
 
 - (NSArray *)backgroundColors
@@ -242,9 +252,8 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     static NSArray *s_bgColors = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        s_bgColors = @[ [UIColor colorWithRed:0.5059 green:0.5098 blue:0.5255 alpha:1.0000],
+        s_bgColors = @[ [UIColor colorWithRed:0.2 green:0.2 blue:0.22 alpha:1.0000],
                         [UIColor colorWithRed:0.8863 green:0.5137 blue:0.3255 alpha:1.0000],
-                        [UIColor colorWithRed:0.9098 green:0.7098 blue:0.4863 alpha:1.0000],
                         [UIColor colorWithRed:0.3176 green:0.5725 blue:0.8431 alpha:1.0000] ];
     });
     return s_bgColors;
@@ -257,8 +266,8 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset  = 40.0;
     /*
      * When the scrollview scrolls, set the tween animator's time. This will update all tweens.
      */
-    CGFloat totalScrollLength = scrollView.contentSize.height - CGRectGetHeight(scrollView.frame);
-    CGFloat normalizedTime    = scrollView.contentOffset.y / totalScrollLength;
+    CGFloat totalScrollLength = scrollView.contentSize.width - CGRectGetWidth(scrollView.frame);
+    CGFloat normalizedTime    = scrollView.contentOffset.x / totalScrollLength;
     [self.tweenAnimator setTime:normalizedTime];
 }
 

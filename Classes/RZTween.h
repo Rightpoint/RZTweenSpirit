@@ -57,13 +57,4 @@
  */
 - (id)tweenedValueAtTime:(NSTimeInterval)time;
 
-/**
- *  Return whether another tween is equal to this one.
- *
- *  @param tween Some other tween.
- *
- *  @return Whether the tweens are equal.
- */
-- (BOOL)isEqualToTween:(id<RZTween>)tween;
-
 @end

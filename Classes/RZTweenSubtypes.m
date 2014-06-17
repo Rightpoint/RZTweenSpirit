@@ -299,33 +299,6 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
     return copy;
 }
 
-- (BOOL)isEqual:(id)object
-{
-    if (object == self) {
-        return YES;
-    }
-    
-    if ( ![object isMemberOfClass:[self class]] ) {
-        return NO;
-    }
-    
-    return [self isEqualToTween:object];
-}
-
-- (BOOL)isEqualToTween:(id<RZTween>)tween
-{
-    if ( ![tween isKindOfClass:[RZKeyFrameTween class]] ) {
-        return NO;
-    }
-    
-    RZKeyFrameTween *kfTween = tween;
-    return [self.sortedKeyFrames isEqualToArray:kfTween.sortedKeyFrames];
-}
-
-- (NSUInteger)hash {
-    return [NSStringFromClass([self class]) hash] ^ [self.sortedKeyFrames hash];
-}
-
 @end
 
 // -----------------------------
