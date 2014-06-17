@@ -131,6 +131,8 @@ This also works with CALayer transform keypaths, which will still play nicely to
 [self.tweenAnimator addTween:myTranslationTween forKeypath:@"transform.translation" ofObject:self.myView.layer];
 ```
 
+**Note:** The keypath being updated must represent the same underlying datatype as the tween being used to update it, or a runtime exception will be thrown.
+
 The block-based method takes a block which will receive a reference to the tween itself and the current value of the tween:
 
 ```objective-c
