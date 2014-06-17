@@ -27,6 +27,7 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 @property (nonatomic, strong) NSLayoutConstraint *cloud1CenterX;
 @property (nonatomic, strong) NSLayoutConstraint *cloud2CenterX;
 
+@property (nonatomic, weak) UILabel *arrowLabel;
 @property (nonatomic, weak) UILabel *titleLabel;
 
 @property (nonatomic, strong) NSLayoutConstraint *labelYConstraint;
@@ -49,6 +50,13 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
         scrollView.delegate = self;
         [self addSubview:scrollView];
         _scrollView = scrollView;
+        
+        UILabel *arrowLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        arrowLabel.font = [UIFont systemFontOfSize:28];
+        arrowLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+        arrowLabel.text = @"➜";
+        [self.scrollView addSubview:arrowLabel];
+        _arrowLabel = arrowLabel;
         
         UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
         startButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
@@ -156,6 +164,12 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) * kRZTweeningDemoViewScrollWidthMultiplier,
                                              CGRectGetWidth(self.bounds));
     
+    // Size the arrow label
+    [self.arrowLabel sizeToFit];
+    self.arrowLabel.center = CGPointMake(CGRectGetWidth(self.bounds) - 30.0,
+                                         CGRectGetHeight(self.bounds) * 0.5);
+    
+    // Size the title label
     [self.titleLabel sizeToFit];
     UIView *labelContainer = [self.titleLabel superview];
     self.titleLabel.center = CGPointMake(CGRectGetWidth(labelContainer.bounds) * 0.5, CGRectGetHeight(labelContainer.bounds) * 0.5);
@@ -182,6 +196,14 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
         [colorTween addKeyColor:bgColor atTime:(double)idx/denominator];
     }];
     [self.tweenAnimator addTween:colorTween forKeyPath:@"backgroundColor" ofObject:self];
+    
+    /*
+     *  Fade out the hint arrow!
+     */
+    RZFloatTween *arrowAlpha = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+    [arrowAlpha addKeyFloat:1.0 atTime:0];
+    [arrowAlpha addKeyFloat:0.0 atTime:0.1];
+    [self.tweenAnimator addTween:arrowAlpha forKeyPath:@"alpha" ofObject:self.arrowLabel];
     
     /*
      *  Tween the start button!
