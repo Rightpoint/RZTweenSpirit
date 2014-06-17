@@ -60,6 +60,8 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id value);
  */
 - (void)addTween:(id<RZTween>)tween withUpdateBlock:(RZTweenAnimatorUpdateBlock)frameBlock;
 
+// TODO: removeTween
+
 /**
  *  Represents the current position of the animation timeline.
  *  Set this to change the timeline position immediately.
@@ -80,6 +82,8 @@ typedef void (^RZTweenAnimatorUpdateBlock)(id value);
  *  @param duration the duration of the animation.
  */
 - (void)animateToTime:(NSTimeInterval)time overDuration:(NSTimeInterval)duration;
+
+// TODO: stopAnimating
 
 /**
  *  For notifying a delegate of the state of the RZTweenAnimator.

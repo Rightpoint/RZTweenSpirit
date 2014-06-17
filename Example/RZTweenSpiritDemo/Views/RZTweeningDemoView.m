@@ -107,40 +107,33 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
         UIView *labelContainer = [[UIView alloc] init];
         labelContainer.userInteractionEnabled = NO;
         labelContainer.backgroundColor = [UIColor clearColor];
-        labelContainer.translatesAutoresizingMaskIntoConstraints = NO;
+        [labelContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addSubview:labelContainer];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[container]-0-|"
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:@{ @"container" : labelContainer }]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container(==120)]"
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[container]"
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:@{ @"container" : labelContainer }]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:labelContainer
+                                                         attribute:NSLayoutAttributeHeight
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeHeight
+                                                        multiplier:0.25
+                                                          constant:0.0]];
 
         UILabel *titleLabel       = [[UILabel alloc] init];
         titleLabel.text           = @"RZTweenSpirit";
         titleLabel.textAlignment  = NSTextAlignmentCenter;
-        titleLabel.font           = [UIFont systemFontOfSize:34];
+        titleLabel.font           = [UIFont systemFontOfSize:42];
         titleLabel.textColor      = [UIColor whiteColor];
         [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        
         [labelContainer addSubview:titleLabel];
-        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                                   attribute:NSLayoutAttributeCenterY
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:labelContainer
-                                                                   attribute:NSLayoutAttributeCenterY
-                                                                  multiplier:1.0
-                                                                    constant:0.0]];
-        
-        [labelContainer addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                                   attribute:NSLayoutAttributeCenterX
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:labelContainer
-                                                                   attribute:NSLayoutAttributeCenterX
-                                                                  multiplier:1.0
-                                                                    constant:0.0]];
         _titleLabel = titleLabel;
 
         
@@ -153,6 +146,9 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    [self.titleLabel sizeToFit];
+    UIView *labelContainer = [self.titleLabel superview];
+    self.titleLabel.center = CGPointMake(CGRectGetWidth(labelContainer.bounds) * 0.5, CGRectGetHeight(labelContainer.bounds) * 0.5);
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) * kRZTweeningDemoViewScrollWidthMultiplier,
                                              CGRectGetWidth(self.bounds));
 }
@@ -181,9 +177,9 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
      *  You can tween frame/center properties of UIViews directly, but this is restrictive for different device sizes.
      *  But animation can also be done using autolayout (examples below) for dynamic, responsive view layouts.
      */
-    CGFloat const buttonMaxOffsetY = CGRectGetHeight(self.bounds) * 0.3;
+    CGFloat const buttonMaxOffsetY = CGRectGetHeight(self.bounds) * 0.4;
     CGFloat buttonNominalX = CGRectGetWidth(self.bounds) * 0.5;
-    CGFloat buttonNominalY = CGRectGetHeight(self.bounds) * 0.4;
+    CGFloat buttonNominalY = CGRectGetHeight(self.bounds) * 0.38;
     RZPointTween *buttonCenterTween = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeQuadraticEaseOut];
     [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY + buttonMaxOffsetY) atTime:0];
     [buttonCenterTween addKeyPoint:CGPointMake(buttonNominalX, buttonNominalY) atTime:1];
@@ -220,28 +216,26 @@ static CGFloat const kRZTweeningDemoViewCloud2StartXOffset      = -10.0;
     
     [self.tweenAnimator addTween:cloud1ParallaxTween forKeyPath:@"constant" ofObject:self.cloud1CenterX];
     [self.tweenAnimator addTween:cloud2ParallaxTween forKeyPath:@"constant" ofObject:self.cloud2CenterX];
-
-    /*
-     *  The banner label also has constraints, but its transform can still be animated!
-     */
-    CGFloat const labelMaxScale = 1.5;
-    RZTransformTween *labelScaleTween = [[RZTransformTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
-    CGAffineTransform labelInitialTransform = CGAffineTransformMakeScale(labelMaxScale, labelMaxScale);
-    labelInitialTransform = CGAffineTransformRotate(labelInitialTransform, M_PI * 0.1);
-    [labelScaleTween addKeyTransform:labelInitialTransform atTime:0.0];
-    [labelScaleTween addKeyTransform:CGAffineTransformIdentity atTime:1.0];
     
     /*
-     * The layer transform provides much more efficient animation than the view
-     * transform when autolayout is running the show.
+     *  Tween values can be used with CALayer keypaths, too!
      */
-    __weak __typeof__(self) weakSelf = self;
-    [self.tweenAnimator addTween:labelScaleTween withUpdateBlock:^(NSValue *value) {
-        CATransform3D layerTransform = CATransform3DMakeAffineTransform([value CGAffineTransformValue]);
-        weakSelf.titleLabel.transform = [value CGAffineTransformValue];
-    }];
+    CGFloat const labelMaxScale = 3.0;
+    RZFloatTween *labelScaleTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+    [labelScaleTween addKeyFloat:labelMaxScale atTime:0.0];
+    [labelScaleTween addKeyFloat:1.0 atTime:0.7];
+    [labelScaleTween addKeyFloat:1.0 atTime:1.0];
+    [labelScaleTween addKeyFloat:1.5 atTime:1.2]; // overscroll
+    [self.tweenAnimator addTween:labelScaleTween forKeyPath:@"transform.scale" ofObject:self.titleLabel.layer];
     
-    RZFloatTween *labelAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+    const CGFloat labelMaxTranslationY = CGRectGetHeight(self.bounds) * 0.08;
+    RZFloatTween *labelTranslateTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseOut];
+    [labelTranslateTween addKeyFloat:labelMaxTranslationY atTime:0.0];
+    [labelTranslateTween addKeyFloat:labelMaxTranslationY atTime:0.7];
+    [labelTranslateTween addKeyFloat:0.0 atTime:1.0];
+    [self.tweenAnimator addTween:labelTranslateTween forKeyPath:@"transform.translation.y" ofObject:self.titleLabel.layer];
+    
+    RZFloatTween *labelAlphaTween = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveTypeSineEaseIn];
     [labelAlphaTween addKeyFloat:0.0 atTime:0.0];
     [labelAlphaTween addKeyFloat:1.0 atTime:1.0];
     [self.tweenAnimator addTween:labelAlphaTween forKeyPath:@"alpha" ofObject:self.titleLabel];

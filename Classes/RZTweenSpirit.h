@@ -33,4 +33,4 @@
  */
 
 #import "RZTweenAnimator.h"
-#import "RZTweenSubtypes.h"
+#import "RZKeyFrameTweens.h"

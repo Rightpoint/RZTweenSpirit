@@ -1,5 +1,5 @@
 //
-//  RZTweenSubtypes.m
+//  RZKeyFrameTweens.m
 //  RZTweenSpirit
 //
 //  Created by Nick Donaldson on 6/16/14.
@@ -27,7 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "RZTweenSubtypes.h"
+#import "RZKeyFrameTweens.h"
 
 static float RZTweenClampFloat(float value, float min, float max)
 {
@@ -60,17 +60,17 @@ static float RZTweenQuadraticEaseInOut(float v)
 
 static float RZTweenSineEaseIn(float v)
 {
-	return sin(M_PI_2 * (v - 1)) + 1;
+	return sinf((float)M_PI_2 * (v - 1)) + 1;
 }
 
 static float RZTweenSineEaseOut(float v)
 {
-	return sin(M_PI_2 * v);
+	return sinf((float)M_PI_2 * v);
 }
 
 static float RZTweenSineEaseInOut(float v)
 {
-	return (1 - cos(M_PI * v))/2;
+	return (1 - cosf((float)M_PI * v))/2;
 }
 
 static float RZTweenEasedDelta(float delta, RZTweenCurveType curve)
@@ -345,36 +345,6 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 // -----------------------------
 
-@implementation RZTransformTween
-
-+ (Class)valueClass
-{
-    return [NSValue class];
-}
-
-- (void)addKeyTransform:(CGAffineTransform)transform atTime:(NSTimeInterval)time
-{
-    [self addKeyValue:[NSValue valueWithCGAffineTransform:transform] atTime:time];
-}
-
-- (id)interpolatedValueFromKeyValue:(id)fromValue atTime:(NSTimeInterval)fromTime toKeyValue:(id)toValue atTime:(NSTimeInterval)toTime withDelta:(float)delta
-{
-    CGAffineTransform tf1 = [fromValue CGAffineTransformValue];
-    CGAffineTransform tf2 = [toValue CGAffineTransformValue];
-
-    CGAffineTransform finalTf;
-    finalTf.a = RZTweenLerp(delta, fromTime, toTime, tf1.a, tf2.a);
-    finalTf.b = RZTweenLerp(delta, fromTime, toTime, tf1.b, tf2.b);
-    finalTf.c = RZTweenLerp(delta, fromTime, toTime, tf1.c, tf2.c);
-    finalTf.d = RZTweenLerp(delta, fromTime, toTime, tf1.d, tf2.d);
-    finalTf.tx = RZTweenLerp(delta, fromTime, toTime, tf1.tx, tf2.tx);
-    finalTf.ty = RZTweenLerp(delta, fromTime, toTime, tf1.ty, tf2.ty);
-
-    return [NSValue valueWithCGAffineTransform:finalTf];
-}
-
-@end
-
 @implementation RZRectTween
 
 + (Class)valueClass
@@ -403,6 +373,8 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 
 @end
 
+// -----------------------------
+
 @implementation RZPointTween
 
 + (Class)valueClass
@@ -428,6 +400,8 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 }
 
 @end
+
+// -----------------------------
 
 @implementation RZColorTween
 

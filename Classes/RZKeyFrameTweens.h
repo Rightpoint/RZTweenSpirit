@@ -1,5 +1,5 @@
 //
-//  RZTweenSubtypes.h
+//  RZKeyFrameTweens.h
 //  RZTweenSpirit
 //
 //  Created by Nick Donaldson on 6/16/14.
@@ -107,7 +107,8 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
  *  @param time  Time for the keyframe.
  *
  *  @warning The values passed in must represent the same class that is returned by +valueClass.
- *           Subclasses should implement a typed version of this method which calls through to this implementation.
+ *           Subclasses should implement a typed version of this method which calls through to this 
+ *           implementation. See @p RZFloatTween for an example.
  */
 - (void)addKeyValue:(id)value atTime:(NSTimeInterval)time;
 
@@ -163,21 +164,6 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 @interface RZBooleanTween : RZKeyFrameTween
 
 - (void)addKeyBool:(BOOL)keyBool atTime:(NSTimeInterval)time;
-
-@end
-
-// ----------------------
-
-/**
- *  Tween for CGAffineTransform values.
- *  Value type returned is NSValue wrapping CGAffineTransform.
- *
- *  @warning Performs direct linear interpolation between matrices. Rotation
- *           and certain other transforms may not always work correctly.
- */
-@interface RZTransformTween : RZKeyFrameTween
-
-- (void)addKeyTransform:(CGAffineTransform)transform atTime:(NSTimeInterval)time;
 
 @end
 
