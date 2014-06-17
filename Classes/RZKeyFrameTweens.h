@@ -226,8 +226,3 @@ typedef NS_ENUM(NSUInteger, RZTweenCurveType)
 - (void)addKeyColor:(UIColor *)color atTime:(NSTimeInterval)time;
 
 @end
-
-
-
-// TODO:
-// - Bounce Curves.
