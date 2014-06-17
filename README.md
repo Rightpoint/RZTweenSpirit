@@ -84,13 +84,23 @@ That's it - you're ready to start making some tweens!
 An object which implements the `RZTween` protocol simply has the ability to return a value for a particular point along a timeline. There are only two methods in the protocol:
 
 - **`+ (Class)valueClass;`**
-	- Returns the class represented by values produced by this tween. This can be used for type-checking, as it is with `RZKeyFrameTween`.
+	- Returns the class represented by values produced by this tween. This can be used for type checking, as it is with `RZKeyFrameTween`.
 - **`- (id)tweenedValueAtTime:(NSTimeInterval)time;`**
 	- Return a value of the type returned by `valueClass` for the provided time.
-	
-Classes implementing `RZTween` must also implement `NSCopying` as they will be used as keys in an internal dictionary within the animator.
 
-The primary concrete implementation of `RZTween` provided is `RZKeyFrameTween`, which provides facilities for tweening between keyframe values of various types anchored to instants along the timeline, with optional easing curves. See `RZKeyFrameTweens.h` for several concrete subtypes corresponding to different data types (float, point, color, etc).
+Despite the name, tweens do not necessarily have to interpolate between different values. They can simply return a single value for a given range of time.
+		
+**Note:** Classes implementing `RZTween` must also implement `NSCopying` as they will be used as keys in an internal dictionary within the animator.
+
+### Keyframe Tweens
+
+The primary concrete implementation of `RZTween` provided is `RZKeyFrameTween`, which provides facilities for tweening between keyframe values of various types anchored to instants along the timeline, with optional easing curves. See `RZKeyFrameTweens.h` for several concrete subtypes corresponding to different data types:
+
+- `CGFloat` (wrapped in `NSNumber`)
+- `BOOL` (wrapped in `NSNumber`)
+- `CGRect` (wrapped in `NSValue`)
+- `CGPoint` (wrapped in `NSValue`)
+- `UIColor`
 
 
 ### The Animator
@@ -105,13 +115,46 @@ The KVC method takes a keypath and an object for which the keypath will be modif
 [self.tweenAnimator addTween:myRectTween forKeypath:@"frame" ofObject:self.myView];
 ```
 
+This also works with CALayer transform keypaths, which will still play nicely together when using seperate tweens:
+
+```
+// Tween which represents rotation angle (around z-axis) in radians
+[self.tweenAnimator addTween:myRotationTween forKeypath:@"transform.rotation" ofObject:self.myView.layer];
+
+// Tween which represents translation as a CGPoint
+[self.tweenAnimator addTween:myTranslationTween forKeypath:@"transform.translation" ofObject:self.myView.layer];
+```
+
 The block-based method takes a block which will receive a reference to the tween itself and the current value of the tween:
 
+```
+// Must use a weak self reference within these blocks to avoid a retain cycle, 
+// if the animator is retained by self.
+__weak typeof(self) weakSelf = self;
 
+// Note that the second argument of the block can be cast upwards from id 
+// to whatever type the tween returns as a value
+[self.tweenAnimator addTween:myTween withUpdateBlock:^(id<RZTween> tween, NSNumber *value) {
+	weakSelf.someConstraint.constant = [value floatValue]; // must unbox NSNumber/NSValue
+	NSLog(@"Updated constraint constant to: %@", value);
+}];
+```
+
+Once you have some tweens registered, you can set the animator's time offset directly or animate it to a particular instant.
+
+### Custom Tweens
+
+Because the `RZTween` protocol and the entire RZTweenSpirit architecture is dynamically typed, you can make tweens for literally anything:
+
+- Strings that need to populate a label at different points along a timeline.
+- Images that make up frames of an animated sequence
+- More complex model objects representing some on-screen data
+
+The possiblities are endless!
 
 ### Full Documentation
 
-For more complete documentation, see the [CocoaDocs]() page and the example project.
+For more complete documentation and examples, see the [CocoaDocs]() page and the example project.
 
 ## License
 
