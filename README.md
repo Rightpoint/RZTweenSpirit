@@ -154,7 +154,9 @@ The possiblities are endless!
 
 ### Full Documentation
 
-For more complete documentation and examples, see the [CocoaDocs]() page and the example project.
+For more complete documentation, see the [CocoaDocs]() page. 
+
+For working examples, see the example project.
 
 ## License
 
