@@ -21,7 +21,7 @@ RZTweenSpirit is great for scripting animation timelines, but it can also do muc
 
 Let's see a simple example:
 
-```
+```objective-c
 // Create an animator
 RZTweenAnimator *tweenAnimator = [[RZTweenAnimator alloc] init];
 
@@ -79,7 +79,7 @@ Copy all of the files in the `Classes` directory to your project. Linking with `
 
 First, import the `RZTweenSpirit.h` header. Then, allocate and initialize an instance of `RZTweenAnimator`, and hold onto it in a property in your view controller or view:
 
-```
+```objective-c
 self.tweenAnimator = [[RZTweenAnimator alloc] init];
 ```
 
@@ -102,11 +102,11 @@ Despite the name, tweens do not necessarily have to interpolate between differen
 
 The primary concrete implementation of `RZTween` provided is `RZKeyFrameTween`, which provides facilities for tweening between keyframe values of various types anchored to instants along the timeline, with optional easing curves. See `RZKeyFrameTweens.h` for several concrete subtypes corresponding to different data types:
 
-- `CGFloat` (wrapped in `NSNumber`)
-- `BOOL` (wrapped in `NSNumber`)
-- `CGRect` (wrapped in `NSValue`)
-- `CGPoint` (wrapped in `NSValue`)
-- `UIColor`
+- `RZFloatTween` : `CGFloat` (wrapped in `NSNumber`)
+- `RZBooleanTween` : `BOOL` (wrapped in `NSNumber`)
+- `RZRectTween` : `CGRect` (wrapped in `NSValue`)
+- `RZPointTween` : `CGPoint` (wrapped in `NSValue`)
+- `RZColorTween` : `UIColor`
 
 
 ### The Animator
@@ -117,13 +117,13 @@ Objects implementing `RZTween` are registered with the animator in one of two wa
 
 The KVC method takes a keypath and an object for which the keypath will be modified:
 
-```
+```objective-c
 [self.tweenAnimator addTween:myRectTween forKeypath:@"frame" ofObject:self.myView];
 ```
 
 This also works with CALayer transform keypaths, which will still play nicely together when using seperate tweens:
 
-```
+```objective-c
 // Tween which represents rotation angle (around z-axis) in radians
 [self.tweenAnimator addTween:myRotationTween forKeypath:@"transform.rotation" ofObject:self.myView.layer];
 
@@ -133,7 +133,7 @@ This also works with CALayer transform keypaths, which will still play nicely to
 
 The block-based method takes a block which will receive a reference to the tween itself and the current value of the tween:
 
-```
+```objective-c
 // Must use a weak self reference within these blocks to avoid a retain cycle, 
 // if the animator is retained by self.
 __weak typeof(self) weakSelf = self;
