@@ -198,15 +198,12 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 {
     NSValue *value = nil;
     NSArray *nearestKeyFrames = [self nearestKeyFramesForTime:time];
-    if (nearestKeyFrames.count > 0)
-    {
-        if (nearestKeyFrames.count == 1)
-        {
+    if ( nearestKeyFrames.count > 0 ) {
+        if ( nearestKeyFrames.count == 1 ) {
             RZTKeyFrame *kf = [nearestKeyFrames firstObject];
             value = kf.value;
         }
-        else
-        {
+        else {
             RZTKeyFrame *kf1 = [nearestKeyFrames firstObject];
             RZTKeyFrame *kf2 = [nearestKeyFrames lastObject];
             double delta = (time - kf1.time) / (kf2.time - kf1.time);
@@ -233,12 +230,10 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
     
     RZTKeyFrame *keyFrame = [RZTKeyFrame keyFrameWithTime:time value:value];
     
-    if (self.sortedKeyFrames.count == 0)
-    {
+    if ( self.sortedKeyFrames.count == 0 ) {
         [self.sortedKeyFrames addObject:keyFrame];
     }
-    else
-    {
+    else {
         NSUInteger newIndex = [self.sortedKeyFrames indexOfObject:keyFrame
                                                     inSortedRange:NSMakeRange(0, self.sortedKeyFrames.count)
                                                           options:NSBinarySearchingInsertionIndex
@@ -260,8 +255,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 - (NSArray *)nearestKeyFramesForTime:(NSTimeInterval)time
 {
     NSArray *kframes = nil;
-    if (self.sortedKeyFrames.count > 0)
-    {
+    if ( self.sortedKeyFrames.count > 0 ) {
         RZTKeyFrame *searchFrame = [RZTKeyFrame keyFrameWithTime:time value:nil];
         NSUInteger insertIndex = [self.sortedKeyFrames indexOfObject:searchFrame
                                                        inSortedRange:NSMakeRange(0, self.sortedKeyFrames.count)
@@ -270,16 +264,13 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
                                                          return [@(kf1.time) compare:@(kf2.time)];
                                                      }];
         
-        if (insertIndex == 0)
-        {
+        if ( insertIndex == 0 ) {
             kframes = @[[self.sortedKeyFrames firstObject]];
         }
-        else if (insertIndex == self.sortedKeyFrames.count)
-        {
+        else if ( insertIndex == self.sortedKeyFrames.count ) {
             kframes = @[[self.sortedKeyFrames lastObject]];
         }
-        else
-        {
+        else {
             kframes = @[[self.sortedKeyFrames objectAtIndex:insertIndex-1],
                         [self.sortedKeyFrames objectAtIndex:insertIndex]];
         }
@@ -291,7 +282,7 @@ static float RZTweenLerp(float delta, float inMin, float inMax, float outMin, fl
 {
     RZKeyFrameTween *copy = [[[self class] allocWithZone:zone] init];
     
-    if (copy != nil) {
+    if ( copy != nil ) {
         copy.sortedKeyFrames = [self.sortedKeyFrames copy];
         copy.curveType = self.curveType;
     }
