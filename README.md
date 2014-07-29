@@ -53,7 +53,7 @@ RZPointTween *labelCenter = [[RZPointTween alloc] initWithCurveType:RZTweenCurve
 
 #### Why not use CoreAnimation?
 
-In many situations, CoreAnimation is probably a better choice than RZTweenSpirit. If you need a reliable, proven animation system, CoreAnimation is definitely the way to go. But if you're looking for a more expressive way to create animation timelines, you might find RZTweenSpirit useful!
+In many situations, CoreAnimation is probably a better choice than RZTweenSpirit. If you need to handle complex timing, custom drawing, or precise synchronization, CoreAnimation is the way to go. But if you're working with relatively simple animations and looking for a more expressive way to script a timeline, you might find RZTweenSpirit useful!
 
 ## Requirements
 
