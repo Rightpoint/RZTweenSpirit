@@ -162,7 +162,7 @@ The possiblities are endless!
 
 ### Full Documentation
 
-For more complete documentation, see the [CocoaDocs]() page. 
+For more complete documentation, see the [CocoaDocs](http://cocoadocs.org/docsets/RZTweenSpirit/0.1.0/) page. 
 
 For working examples, see the example project.
 
