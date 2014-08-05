@@ -34,7 +34,7 @@ RZFloatTween *labelAlpha = [[RZFloatTween alloc] initWithCurveType:RZTweenCurveT
 // Use a point tween to animate the center of the label between three points with a linear curve
 RZPointTween *labelCenter = [[RZPointTween alloc] initWithCurveType:RZTweenCurveTypeLinear];
 [labelCenter addKeyPoint:CGPointMake(100, 100) atTime:0.0];
-[labelCenter addKEyPoint:CGPointMake(400, 100) atTime:6.0];
+[labelCenter addKeyPoint:CGPointMake(400, 100) atTime:6.0];
 [labelCenter addKeyPoint:CGpointMake(200, 400) atTime:10.0];
 [tweenAnimator addTween:labelCenter forKeyPath@"center" ofObject:self.titleLabel];
 
